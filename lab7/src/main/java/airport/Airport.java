@@ -10,16 +10,15 @@ import planes.Plane;
 import java.util.*;
 
 public class Airport{
-    private List<? extends Plane> planes;
+    private final List<? extends Plane> planes;
 
     public Airport(List<? extends Plane> planes) {
         this.planes = planes;
     }
 
     public List<PassengerPlane> getPassengerPlanes() {
-        List<? extends Plane> listOfPlanes = this.planes;
         List<PassengerPlane> listOfPassengerPlanes = new ArrayList<>();
-        for (Plane plane : listOfPlanes) {
+        for (Plane plane : this.planes) {
             if (plane instanceof PassengerPlane) { listOfPassengerPlanes.add((PassengerPlane) plane);} }
         return listOfPassengerPlanes;
     }
@@ -27,9 +26,8 @@ public class Airport{
     public List<? extends Plane> getPlanes() { return planes; }
 
     public List<MilitaryPlane> getMilitaryPlanes() {
-        List<? extends Plane> listOfPlanes = this.planes;
         List<MilitaryPlane> listOfMilitaryPlanes = new ArrayList<>();
-        for (Plane plane : listOfPlanes) {
+        for (Plane plane : this.planes) {
             if (plane instanceof MilitaryPlane) { listOfMilitaryPlanes.add((MilitaryPlane) plane);} }
         return listOfMilitaryPlanes;
     }
@@ -45,26 +43,17 @@ public class Airport{
         return planeWithMaxCapacity;
     }
 
-    public List<MilitaryPlane> getTransportMilitaryPlanes() {
-        List<MilitaryPlane> transportMilitaryPlanes = new ArrayList<>();
+    public List<MilitaryPlane> getMilitaryPlanesByCertainType(MilitaryType militaryType) {
         List<MilitaryPlane> militaryPlanes = getMilitaryPlanes();
-        for (MilitaryPlane plane : militaryPlanes) {
-            if (plane.getType() == MilitaryType.TRANSPORT) {
-                transportMilitaryPlanes.add(plane);
-            }
-        }
-        return transportMilitaryPlanes;
-    }
+        List<MilitaryPlane> militaryPlanesByCertainType = new ArrayList<>();
 
-    public List<MilitaryPlane> getBomberMilitaryPlanes() {
-        List<MilitaryPlane> bomberMilitaryPlanes = new ArrayList<>();
-        List<MilitaryPlane> militaryPlanes = getMilitaryPlanes();
-        for (MilitaryPlane plane : militaryPlanes) {
-            if (plane.getType() == MilitaryType.BOMBER) {
-                bomberMilitaryPlanes.add(plane);
+        for (MilitaryPlane militaryPlane : militaryPlanes) {
+            if (militaryPlane.getType() == militaryType) {
+                militaryPlanesByCertainType.add(militaryPlane);
             }
         }
-        return bomberMilitaryPlanes;
+
+        return militaryPlanesByCertainType;
     }
 
     public List<ExperimentalPlane> getExperimentalPlanes() {
@@ -86,31 +75,16 @@ public class Airport{
         return classificationLevels;
     }
 
-    public Airport sortByMaxFlightDistance() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane o1, Plane o2) {
-                return o1.getMaxFlightDistance() - o2.getMaxFlightDistance();
-            }
-        });
-        return this;
+    public void sortPlanesByMaxFlightDistance() {
+        planes.sort(Comparator.comparingInt(Plane::getMaxFlightDistance));
     }
 
-    public Airport sortByMaxSpeed() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane o1, Plane o2) {
-                return o1.getMaxSpeed() - o2.getMaxSpeed();
-            }
-        });
-        return this;
+    public void sortPlanesByMaxSpeed() {
+        planes.sort(Comparator.comparingInt(Plane::getMaxSpeed));
     }
 
-    public Airport sortByMaxLoadCapacity() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane o1, Plane o2) {
-                return o1.getMaxLoadCapacity() - o2.getMaxLoadCapacity();
-            }
-        });
-        return this;
+    public void sortPlanesByMaxLoadCapacity() {
+        planes.sort(Comparator.comparingInt(Plane::getMaxLoadCapacity));
     }
 
     @Override
@@ -118,6 +92,19 @@ public class Airport{
         return "airport.Airport{" +
                 "Planes=" + planes.toString() +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airport airport = (Airport) o;
+        return Objects.equals(planes, airport.planes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(planes);
     }
 
 }

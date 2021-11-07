@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Runner {
-    static List<Plane> planes = Arrays.asList(
+    static final List<Plane> planes = Arrays.asList(
             new PassengerPlane("Boeing-737", 900, 12000, 60500, 164),
             new PassengerPlane("Boeing-737-800", 940, 12300, 63870, 192),
             new PassengerPlane("Boeing-747", 980, 16100, 70500, 242),
@@ -36,12 +36,10 @@ public class Runner {
         Airport airport = new Airport(planes);
         Airport militaryAirport = new Airport(airport.getMilitaryPlanes());
         Airport passengerAirport = new Airport(airport.getPassengerPlanes());
-        logger.info("Military airport sorted by max distance: " + militaryAirport
-                    .sortByMaxFlightDistance()
-                    .toString());
-        logger.info("Passenger airport sorted by max speed: " + passengerAirport
-                    .sortByMaxSpeed()
-                    .toString());
+        militaryAirport.sortPlanesByMaxFlightDistance();
+        logger.info("Military airport sorted by max distance: " + militaryAirport);
+        passengerAirport.sortPlanesByMaxSpeed();
+        logger.info("Passenger airport sorted by max speed: " + passengerAirport);
         logger.info("Plane with max passenger capacity: " + passengerAirport.getPassengerPlaneWithMaxPassengersCapacity());
     }
 }

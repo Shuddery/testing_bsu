@@ -3,10 +3,10 @@ package planes;
 import java.util.Objects;
 
 public abstract class Plane {
-    private String model;
-    private int maxSpeed;
-    private int maxFlightDistance;
-    private int maxLoadCapacity;
+    private final String model;
+    private final int maxSpeed;
+    private final int maxFlightDistance;
+    private final int maxLoadCapacity;
 
     public Plane(String model, int maxSpeed, int maxFlightDistance, int maxLoadCapacity) {
         this.model = model;
