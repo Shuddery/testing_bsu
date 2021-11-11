@@ -53,8 +53,7 @@ public class PastebinHomePage {
    }
 
    public PastebinHomePage chooseExpiration() {
-       JavascriptExecutor executor = (JavascriptExecutor) driver;
-       executor.executeScript("arguments[0].click();", findElementByLocator(expirationChoiceLocator));
+       waitElementToBeClickable(expirationChoiceLocator).click();
        return this;
    }
 
@@ -70,7 +69,7 @@ public class PastebinHomePage {
     }
 
     private WebElement waitElementToBeClickable(By locator) {
-        return new WebDriverWait(driver, 20)
+        return new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
