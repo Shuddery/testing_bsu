@@ -16,7 +16,7 @@ public class PastebinHomePage {
 
     private By expirationSelectLocator = By.xpath("//span[text()='Never']");
 
-    private By expirationChoiceLocator = By.xpath("/html/body/span[2]/span/span[2]/ul/li[3]");
+    private By expirationChoiceLocator = By.xpath("//span[@class='select2-results']/ul/li[@id='select2-postform-expiration-result-7o8a-10M']");
 
     private WebElement nameInput;
     private By nameInputLocator = By.name("PostForm[name]");
@@ -47,8 +47,13 @@ public class PastebinHomePage {
     public PastebinHomePage selectExpiration() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", findElementByLocator(expirationSelectLocator));
-        executor.executeScript("arguments[0].click();", findElementByLocator(expirationChoiceLocator));
         return this;
+   }
+
+   public PastebinHomePage chooseExpiration() {
+       JavascriptExecutor executor = (JavascriptExecutor) driver;
+       executor.executeScript("arguments[0].click();", findElementByLocator(expirationChoiceLocator));
+       return this;
    }
 
     public PastebinHomePage pasteName(String name) {

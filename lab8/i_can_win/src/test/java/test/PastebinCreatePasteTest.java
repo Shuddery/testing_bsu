@@ -33,6 +33,7 @@ public class PastebinCreatePasteTest {
                 .openHomePage()
                 .pasteCode(CODE)
                 .selectExpiration()
+                .chooseExpiration()
                 .pasteName(NAME)
                 .createPaste();
         Assert.assertTrue(resultsPage.isInitialized());
