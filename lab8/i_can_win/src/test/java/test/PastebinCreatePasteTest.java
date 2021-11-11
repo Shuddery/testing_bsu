@@ -22,7 +22,7 @@ public class PastebinCreatePasteTest {
     public void browserSetup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
-        WebDriverManager.chromedriver().browserVersion("95.0.4638.69").setup();
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         driver.manage().window().setSize(new Dimension(1440, 900));
     }
