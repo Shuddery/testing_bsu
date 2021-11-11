@@ -44,12 +44,12 @@ public class PastebinHomePage {
         return this;
     }
 
-//    public PastebinHomePage selectExpiration() {
-//        JavascriptExecutor executor = (JavascriptExecutor) driver;
-//        executor.executeScript("arguments[0].click();", findElementByLocator(expirationSelectLocator));
-//        executor.executeScript("arguments[0].click();", findElementByLocator(expirationChoiceLocator));
-//        return this;
-//    }
+    public PastebinHomePage selectExpiration() {
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", findElementByLocator(expirationSelectLocator));
+        executor.executeScript("arguments[0].click();", findElementByLocator(expirationChoiceLocator));
+        return this;
+   }
 
     public PastebinHomePage pasteName(String name) {
         nameInput.sendKeys(name);
