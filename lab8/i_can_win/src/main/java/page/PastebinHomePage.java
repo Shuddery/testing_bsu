@@ -16,6 +16,7 @@ public class PastebinHomePage {
 
     private By expirationSelectLocator = By.xpath("//span[text()='Never']");
 
+    private WebElement expirationChoice;
     private By expirationChoiceLocator = By.xpath("//span[@class='select2-results']/ul/li[@id='select2-postform-expiration-result-7o8a-10M']");
 
     private WebElement nameInput;
@@ -36,6 +37,7 @@ public class PastebinHomePage {
         driver.get(HOMEPAGE_URL);
         textArea = findElementByLocator(textAreaLocator);
         nameInput = findElementByLocator(nameInputLocator);
+        expirationChoice = findElementByLocator(expirationChoiceLocator);
         return this;
     }
 
