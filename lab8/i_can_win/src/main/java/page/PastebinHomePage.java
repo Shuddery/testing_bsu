@@ -37,7 +37,6 @@ public class PastebinHomePage {
         driver.get(HOMEPAGE_URL);
         textArea = findElementByLocator(textAreaLocator);
         nameInput = findElementByLocator(nameInputLocator);
-        expirationChoice = findElementByLocator(expirationChoiceLocator);
         return this;
     }
 
