@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 import page.PastebinCreatePasteResultsPage;
 import page.PastebinHomePage;
 
+import java.util.concurrent.TimeUnit;
+
 public class PastebinCreatePasteTest {
 
     private WebDriver driver;
@@ -22,7 +24,8 @@ public class PastebinCreatePasteTest {
         System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().setSize(new Dimension(1440, 900));
     }
 

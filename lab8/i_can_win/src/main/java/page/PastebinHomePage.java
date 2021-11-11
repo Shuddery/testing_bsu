@@ -14,10 +14,11 @@ public class PastebinHomePage {
     private WebElement textArea;
     private By textAreaLocator = By.xpath("//textarea[@id='postform-text']");
 
-    private By expirationSelectLocator = By.xpath("//span[text()='Never']");
+    private WebElement expirationSelect;
+    private By expirationSelectLocator = By.xpath("//span[@id='select2-postform-expiration-container']");
 
     private WebElement expirationChoice;
-    private By expirationChoiceLocator = By.xpath("//*[@id='select2-postform-expiration-result-7o8a-10M']");
+    private By expirationChoiceLocator = By.xpath("/html/body/span[2]/span/span[2]/ul/li[3]");
 
     private WebElement nameInput;
     private By nameInputLocator = By.name("PostForm[name]");
@@ -29,13 +30,10 @@ public class PastebinHomePage {
         this.driver = driver;
     }
 
-    public boolean isInitialized() {
-        return textArea.isDisplayed();
-    }
-
     public PastebinHomePage openHomePage() {
         driver.get(HOMEPAGE_URL);
         textArea = findElementByLocator(textAreaLocator);
+        expirationSelect = findElementByLocator(expirationSelectLocator);
         nameInput = findElementByLocator(nameInputLocator);
         return this;
     }
@@ -46,9 +44,9 @@ public class PastebinHomePage {
     }
 
     public PastebinHomePage selectExpiration() {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", findElementByLocator(expirationSelectLocator));
-        waitVisibilityOfElementLocated(expirationChoiceLocator).click();
+        expirationSelect.click();
+        expirationChoice = findElementByLocator(expirationChoiceLocator);
+        expirationChoice.click();
         return this;
    }
 
@@ -63,19 +61,8 @@ public class PastebinHomePage {
         return new PastebinCreatePasteResultsPage(driver);
     }
 
-    private WebElement waitElementToBeClickable(By locator) {
-        return new WebDriverWait(driver, 30)
-                .until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
-    private WebElement waitVisibilityOfElementLocated(By locator) {
-        return new WebDriverWait(driver, 30)
-                .until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-
     private WebElement findElementByLocator(By locator) {
-        return new WebDriverWait(driver, 10)
+        return new WebDriverWait(driver, 100)
                 .until(ExpectedConditions
                         .presenceOfElementLocated(locator));
     }
