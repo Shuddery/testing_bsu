@@ -1,6 +1,7 @@
 package page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -47,7 +48,8 @@ public class PastebinHomePage {
     }
 
     public PastebinHomePage selectExpiration() {
-        waitElementToBeClickable(expirationSelectLocator).click();
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", findElementByLocator(expirationSelectLocator));
         expirationChoice = findElementByLocator(expirationChoiceLocator);
         expirationChoice.click();
         return this;
