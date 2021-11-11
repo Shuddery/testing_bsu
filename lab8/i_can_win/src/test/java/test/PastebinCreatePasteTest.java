@@ -1,5 +1,6 @@
 package test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +22,7 @@ public class PastebinCreatePasteTest {
     public void browserSetup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(options);
         driver.manage().window().setSize(new Dimension(1440, 900));
     }
