@@ -21,7 +21,7 @@ public class PastebinHomePage {
     private WebElement nameInput;
     private By nameInputLocator = By.name("PostForm[name]");
 
-    private By createButtonLocator = By.xpath("//button[text()='Create New Paste']");
+    private By createButtonLocator = By.xpath("//button[@class='btn -big']");
 
 
     public PastebinHomePage(WebDriver driver) {
@@ -57,7 +57,8 @@ public class PastebinHomePage {
     }
 
     public PastebinCreatePasteResultsPage createPaste() {
-        waitElementToBeClickable(createButtonLocator).click();
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", findElementByLocator(createButtonLocator));
         return new PastebinCreatePasteResultsPage(driver);
     }
 
