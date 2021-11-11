@@ -22,7 +22,6 @@ public class PastebinCreatePasteTest {
         System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
-        options.addArguments("disable-gpu");
         driver = new ChromeDriver(options);
         driver.manage().window().setSize(new Dimension(1440, 900));
     }
@@ -33,7 +32,6 @@ public class PastebinCreatePasteTest {
         PastebinCreatePasteResultsPage resultsPage = homePage
                 .openHomePage()
                 .pasteCode(CODE)
-                .selectExpiration()
                 .pasteName(NAME)
                 .createPaste();
         Assert.assertTrue(resultsPage.isInitialized());
@@ -41,7 +39,6 @@ public class PastebinCreatePasteTest {
 
     @AfterMethod(alwaysRun = true)
     public void browserTearDown() {
-        driver.quit();
         driver = null;
     }
 }
