@@ -16,13 +16,11 @@ public class PastebinHomePage {
 
     private By expirationSelectLocator = By.xpath("//span[text()='Never']");
 
-    private WebElement expirationChoice;
     private By expirationChoiceLocator = By.xpath("/html/body/span[2]/span/span[2]/ul/li[3]");
 
     private WebElement nameInput;
     private By nameInputLocator = By.name("PostForm[name]");
 
-    private WebElement createButton;
     private By createButtonLocator = By.xpath("//button[text()='Create New Paste']");
 
 
@@ -38,7 +36,6 @@ public class PastebinHomePage {
         driver.get(HOMEPAGE_URL);
         textArea = findElementByLocator(textAreaLocator);
         nameInput = findElementByLocator(nameInputLocator);
-        createButton = findElementByLocator(createButtonLocator);
         return this;
     }
 
@@ -50,8 +47,7 @@ public class PastebinHomePage {
     public PastebinHomePage selectExpiration() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", findElementByLocator(expirationSelectLocator));
-        expirationChoice = findElementByLocator(expirationChoiceLocator);
-        expirationChoice.click();
+        waitVisibilityOfElementLocated(expirationChoiceLocator).click();
         return this;
     }
 
@@ -61,7 +57,7 @@ public class PastebinHomePage {
     }
 
     public PastebinCreatePasteResultsPage createPaste() {
-        createButton.click();
+        waitElementToBeClickable(createButtonLocator).click();
         return new PastebinCreatePasteResultsPage(driver);
     }
 
@@ -69,6 +65,12 @@ public class PastebinHomePage {
         return new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
+
+    private WebElement waitVisibilityOfElementLocated(By locator) {
+        return new WebDriverWait(driver, 30)
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
 
     private WebElement findElementByLocator(By locator) {
         return new WebDriverWait(driver, 10)
