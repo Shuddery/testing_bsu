@@ -13,7 +13,6 @@ public class PastebinHomePage {
     private WebElement textArea;
     private By textAreaLocator = By.xpath("//textarea[@id='postform-text']");
 
-    private WebElement expirationSelect;
     private By expirationSelectLocator = By.xpath("//span[text()='Never']");
 
     private WebElement expirationChoice;
@@ -37,7 +36,6 @@ public class PastebinHomePage {
     public PastebinHomePage openHomePage() {
         driver.get(HOMEPAGE_URL);
         textArea = findElementByLocator(textAreaLocator);
-        expirationSelect = findElementByLocator(expirationSelectLocator);
         nameInput = findElementByLocator(nameInputLocator);
         createButton = findElementByLocator(createButtonLocator);
         return this;
@@ -49,7 +47,7 @@ public class PastebinHomePage {
     }
 
     public PastebinHomePage selectExpiration() {
-        expirationSelect.click();
+        waitElementToBeClickable(expirationSelectLocator).click();
         expirationChoice = findElementByLocator(expirationChoiceLocator);
         expirationChoice.click();
         return this;
@@ -63,6 +61,11 @@ public class PastebinHomePage {
     public PastebinCreatePasteResultsPage createPaste() {
         createButton.click();
         return new PastebinCreatePasteResultsPage(driver);
+    }
+
+    private WebElement waitElementToBeClickable(By locator) {
+        return new WebDriverWait(driver, 20)
+                .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     private WebElement findElementByLocator(By locator) {
