@@ -22,11 +22,11 @@ public class GoogleCloudPricingCalculatorTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setupBrowser() {
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
-        options.addArguments("disable-gpu");
-        driver = new ChromeDriver(options);
-        driver.manage().window().setSize(new Dimension(1000, 2000));
+        driver = new ChromeDriver();
+        driver.manage().window().setSize(new Dimension(1440, 900));
     }
 
     @Test
@@ -62,6 +62,7 @@ public class GoogleCloudPricingCalculatorTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDownBrowser() {
+        driver.quit();
         driver = null;
     }
 }
