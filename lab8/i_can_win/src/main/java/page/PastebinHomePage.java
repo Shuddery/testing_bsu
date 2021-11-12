@@ -44,10 +44,9 @@ public class PastebinHomePage {
     }
 
     public PastebinHomePage selectExpiration() {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", expirationSelect);
-        /*expirationChoice = findElementByLocator(expirationChoiceLocator);
-        expirationChoice.click();*/
+        expirationSelect.click();
+        expirationChoice = findElementByLocator(expirationChoiceLocator);
+        expirationChoice.click();
         return this;
    }
 

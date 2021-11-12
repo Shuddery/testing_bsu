@@ -22,12 +22,10 @@ public class PastebinCreatePasteTest {
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        options.addArguments("start-maximized");
+        options.setHeadless(true);
         driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().window().setSize(new Dimension(1000, 2000));
     }
 
     @Test
