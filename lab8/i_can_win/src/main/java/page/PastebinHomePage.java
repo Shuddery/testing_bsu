@@ -15,7 +15,7 @@ public class PastebinHomePage {
     private By textAreaLocator = By.xpath("//textarea[@id='postform-text']");
 
     private WebElement expirationSelect;
-    private By expirationSelectLocator = By.xpath("//span[@id='select2-postform-expiration-container']");
+    private By expirationSelectLocator = By.xpath("//span[text()='Never']");
 
     private WebElement expirationChoice;
     private By expirationChoiceLocator = By.xpath("/html/body/span[2]/span/span[2]/ul/li[3]");
@@ -33,6 +33,7 @@ public class PastebinHomePage {
     public PastebinHomePage openHomePage() {
         driver.get(HOMEPAGE_URL);
         textArea = findElementByLocator(textAreaLocator);
+        expirationSelect = findElementByLocator(expirationSelectLocator);
         nameInput = findElementByLocator(nameInputLocator);
         return this;
     }
@@ -43,10 +44,10 @@ public class PastebinHomePage {
     }
 
     public PastebinHomePage selectExpiration() {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.elementToBeClickable((expirationSelectLocator))).click();
-        expirationChoice = findElementByLocator(expirationChoiceLocator);
-        expirationChoice.click();
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", expirationSelect);
+        /*expirationChoice = findElementByLocator(expirationChoiceLocator);
+        expirationChoice.click();*/
         return this;
    }
 
@@ -62,7 +63,7 @@ public class PastebinHomePage {
     }
 
     private WebElement findElementByLocator(By locator) {
-        return new WebDriverWait(driver, 40)
+        return new WebDriverWait(driver, 30)
                 .until(ExpectedConditions
                         .presenceOfElementLocated(locator));
     }

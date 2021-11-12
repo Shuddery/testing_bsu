@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 import page.PastebinCreatePasteResultsPage;
 import page.PastebinHomePage;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class PastebinCreatePasteTest {
 
@@ -20,11 +22,11 @@ public class PastebinCreatePasteTest {
 
     @BeforeMethod(alwaysRun = true)
     public void browserSetup() {
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @Test
