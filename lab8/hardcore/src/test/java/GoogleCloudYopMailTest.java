@@ -21,10 +21,11 @@ public class GoogleCloudYopMailTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setupBrowser() {
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        options.addArguments("window-size=1200x600");
         driver = new ChromeDriver(options);
-        driver.manage().window().setSize(new Dimension(1440, 900));
     }
 
     @Test

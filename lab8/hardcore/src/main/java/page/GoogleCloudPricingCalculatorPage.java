@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudPricingCalculatorPage {
-
     private WebDriver driver;
 
     private WebElement frameCalculator;
@@ -76,21 +75,6 @@ public class GoogleCloudPricingCalculatorPage {
     private WebElement sendEmailButton;
     private By sendEmailButtonLocator = By.xpath("//button[@aria-label='Send Email']");
 
-    private WebElement copyVMClassField;
-    private By copyVMClassFieldLocator = By.xpath("//div[@class='md-list-item-text ng-binding']");
-
-    private WebElement copyInstanceTypeField;
-    private By copyInstanceTypeFieldLocator = By.xpath("//div[@class='md-list-item-text ng-binding cpc-cart-multiline flex']");
-
-    private WebElement copyRegionField;
-    private By copyRegionFieldLocator = By.xpath("//div[@class='md-list-item-text ng-binding']");
-
-    private WebElement copyLocalSSDField;
-    private By copyLocalSSDFieldLocator = By.xpath("//div[@class='md-list-item-text ng-binding cpc-cart-multiline flex']");
-
-    private WebElement copyCommitmentTermField;
-    private By copyCommitmentTermFieldLocator = By.xpath("//div[@class='md-list-item-text ng-binding']");
-
     private WebElement copyCostField;
     private By copyCostFieldLocator = By.xpath("//b[@class='ng-binding']");
 
@@ -120,9 +104,7 @@ public class GoogleCloudPricingCalculatorPage {
     public GoogleCloudPricingCalculatorPage selectSeries() {
         seriesSelect.click();
         seriesChoice = findElementByLocator(seriesChoiceLocator);
-        new WebDriverWait(driver,30)
-                .until(ExpectedConditions
-                        .elementToBeClickable(seriesChoice)).click();
+        seriesChoice.click();
         addGPUsCheckbox = findElementByLocator(addGPUsCheckboxLocator);
         localSSDSelect = findElementByLocator(localSSDSelectLocator);
         return this;
@@ -140,9 +122,10 @@ public class GoogleCloudPricingCalculatorPage {
         numberOfGPUsSelect = findElementByLocator(numberOfGPUsSelectLocator);
         numberOfGPUsSelect.click();
         numberOfGPUsChoice = findElementByLocator(numberOfGPUsChoiceLocator);
-        new WebDriverWait(driver,20)
+        new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
-                        .elementToBeClickable(numberOfGPUsChoice)).click();
+                        .elementToBeClickable(numberOfGPUsChoice));
+        numberOfGPUsChoice.click();
         GPUTypeSelect = findElementByLocator(GPUTypeSelectLocator);
         GPUTypeSelect.click();
         GPUTypeChoice = findElementByLocator(GPUTypeChoiceLocator);
@@ -151,7 +134,7 @@ public class GoogleCloudPricingCalculatorPage {
     }
 
     public GoogleCloudPricingCalculatorPage addSSD() {
-        new WebDriverWait(driver,10)
+        new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
                         .elementToBeClickable(localSSDSelect));
         localSSDSelect.click();
@@ -176,12 +159,7 @@ public class GoogleCloudPricingCalculatorPage {
 
     public GoogleCloudPricingCalculatorPage addToEstimate() {
         addToEstimateButton.click();
-        copyVMClassField = driver.findElements(copyVMClassFieldLocator).get(3);
-        copyInstanceTypeField = driver.findElements(copyInstanceTypeFieldLocator).get(0);
-        copyRegionField = driver.findElements(copyRegionFieldLocator).get(0);
-        copyLocalSSDField = driver.findElements(copyLocalSSDFieldLocator).get(1);
-        copyCommitmentTermField = driver.findElements(copyCommitmentTermFieldLocator).get(2);
-        copyCostField = driver.findElements(copyCostFieldLocator).get(2);
+        emailEstimateButton = findElementByLocator(emailEstimateButtonLocator);
         return this;
     }
 
@@ -195,36 +173,12 @@ public class GoogleCloudPricingCalculatorPage {
         return this;
     }
 
-    public String copyVMClass() {
-        return copyVMClassField.getText().replace("VM class:","").trim();
-    }
-
-    public String copyInstanceType() {
-        return copyInstanceTypeField.getText().replace("Instance type:","").replace("\nCommitted Use Discount applied","").trim();
-    }
-
-    public String copyRegion() {
-        return copyRegionField.getText().replace("Region:","").trim();
-    }
-
-    public String copyLocalSSD() {
-        return copyLocalSSDField.getText().replace("Local SSD:","").replace("\nCommitted Use Discount applied","").trim();
-    }
-
-    public String copyCommitmentTerm() {
-        return copyCommitmentTermField.getText().replace("Commitment term:","").trim();
-    }
-
-    public String copyInstancesCost() {
-        return copyCostField.getText().replace("Total Estimated Cost: USD","").replace(" per 1 month","").trim();
-    }
-
     public String copyCost() {
         return copyCostField.getText();
     }
 
     private WebElement findElementByLocator(By locator) {
-        return new WebDriverWait(driver, 30)
+        return new WebDriverWait(driver, 25)
                 .until(ExpectedConditions
                         .presenceOfElementLocated(locator));
     }
