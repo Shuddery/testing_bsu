@@ -33,7 +33,6 @@ public class PastebinHomePage {
     public PastebinHomePage openHomePage() {
         driver.get(HOMEPAGE_URL);
         textArea = findElementByLocator(textAreaLocator);
-        expirationSelect = findElementByLocator(expirationSelectLocator);
         nameInput = findElementByLocator(nameInputLocator);
         return this;
     }
@@ -44,7 +43,8 @@ public class PastebinHomePage {
     }
 
     public PastebinHomePage selectExpiration() {
-        expirationSelect.click();
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable((expirationSelectLocator))).click();
         expirationChoice = findElementByLocator(expirationChoiceLocator);
         expirationChoice.click();
         return this;
@@ -62,7 +62,7 @@ public class PastebinHomePage {
     }
 
     private WebElement findElementByLocator(By locator) {
-        return new WebDriverWait(driver, 100)
+        return new WebDriverWait(driver, 40)
                 .until(ExpectedConditions
                         .presenceOfElementLocated(locator));
     }
