@@ -14,13 +14,13 @@ public class PastebinHomePage {
     private By textAreaLocator = By.xpath("//textarea[@id='postform-text']");
 
     private WebElement syntaxHighlightingSelect;
-    private By syntaxHighlightingSelectLocator = By.xpath("//span[text()='None']");
+    private By syntaxHighlightingSelectLocator = By.xpath("(//div[@class='col-sm-9 field-wrapper'])[1]");
 
     private WebElement syntaxHighlightingChoice;
     private By syntaxHighlightingChoiceLocator = By.xpath("/html/body/span[2]/span/span[2]/ul/li[2]/ul/li[1]");
 
     private WebElement expirationSelect;
-    private By expirationSelectLocator = By.xpath("//span[text()='Never']");
+    private By expirationSelectLocator = By.xpath("(//div[@class='col-sm-9 field-wrapper'])[2]");
 
     private WebElement expirationChoice;
     private By expirationChoiceLocator = By.xpath("/html/body/span[2]/span/span[2]/ul/li[3]");
@@ -76,7 +76,7 @@ public class PastebinHomePage {
     }
 
     private WebElement findElementByLocator(By locator) {
-        return new WebDriverWait(driver, 10)
+        return new WebDriverWait(driver, 1000)
                 .until(ExpectedConditions
                         .presenceOfElementLocated(locator));
     }

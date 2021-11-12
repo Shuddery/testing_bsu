@@ -14,7 +14,7 @@ public class GoogleCloudPricingCalculatorTest {
     private final static String TERM = "Google Cloud Platform Pricing Calculator";
     private final static int NUMBER_OF_INSTANCES = 4;
     private final static String VM_CLASS = "regular";
-    private final static String INSTANCE_TYPE = "n1-standard-4";
+    private final static String INSTANCE_TYPE = "n1-standard-8";
     private final static String REGION = "Frankfurt";
     private final static String LOCAL_SSD = "2x375 GiB";
     private final static String COMMITMENT_TERM = "1 Year";
@@ -22,7 +22,6 @@ public class GoogleCloudPricingCalculatorTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setupBrowser() {
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         options.addArguments("disable-gpu");
