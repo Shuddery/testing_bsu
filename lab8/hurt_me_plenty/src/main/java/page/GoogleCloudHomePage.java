@@ -12,10 +12,12 @@ public class GoogleCloudHomePage {
     private static final String HOMEPAGE_URL = "https://cloud.google.com/";
 
     private WebElement searchButton;
-    private By searchButtonLocator = By.xpath("//div[@class='devsite-searchbox']/input");
+    private By searchButtonLocator = By.xpath("//input[@class='devsite-search-field devsite-search-query']");
 
-    public GoogleCloudHomePage(WebDriver driver) {
-        this.driver = driver;
+    public GoogleCloudHomePage(WebDriver driver) { this.driver = driver; }
+
+    public boolean isInitialized() {
+        return searchButton.isDisplayed();
     }
 
     public GoogleCloudHomePage openHomePage() {
@@ -25,7 +27,8 @@ public class GoogleCloudHomePage {
     }
 
     public GoogleCloudSearchPage searchTerm(String term) {
-        searchButton.sendKeys(term, Keys.ENTER);
+        driver.get("https://cloud.google.com/s/results?q=" + term);
+        //searchButton.sendKeys(term + Keys.ENTER);
         return new GoogleCloudSearchPage(driver);
     }
 

@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class GoogleCloudPricingCalculatorPage {
-
     private WebDriver driver;
 
     private WebElement frameCalculator;
@@ -29,7 +28,7 @@ public class GoogleCloudPricingCalculatorPage {
     private By machineTypeSelectLocator = By.xpath("//md-select-value[@id='select_value_label_70']");
 
     private WebElement machineTypeChoice;
-    private By machineTypeChoiceLocator = By.xpath("//md-option[@id='select_option_417']/div");
+    private By machineTypeChoiceLocator = By.xpath("//md-option[@id='select_option_417']/div[@class='md-text ng-binding']");
 
     private WebElement addGPUsCheckbox;
     private By addGPUsCheckboxLocator = By.xpath("/html/body/md-content/md-card/div/md-card-content[1]/div[2]/div/md-card/md-card-content/div/div[1]/form/div[11]/div[1]/md-input-container/md-checkbox/div[2]");
@@ -56,7 +55,7 @@ public class GoogleCloudPricingCalculatorPage {
     private By datacenterLocationSelectLocator = By.id("select_107");
 
     private WebElement datacenterLocationChoice;
-    private By datacenterLocationChoiceLocator = By.xpath("//md-option[@id='select_option_235']/div");
+    private By datacenterLocationChoiceLocator = By.xpath("//md-option[@id='select_option_235']/div[@class='md-text ng-binding']");
 
     private WebElement committedUsageSelect;
     private By committedUsageSelectLocator = By.id("select_114");
@@ -111,7 +110,7 @@ public class GoogleCloudPricingCalculatorPage {
     public GoogleCloudPricingCalculatorPage selectSeries() {
         seriesSelect.click();
         seriesChoice = findElementByLocator(seriesChoiceLocator);
-        new WebDriverWait(driver,30)
+        new WebDriverWait(driver, 30)
                 .until(ExpectedConditions
                         .elementToBeClickable(seriesChoice)).click();
         addGPUsCheckbox = findElementByLocator(addGPUsCheckboxLocator);
@@ -120,6 +119,9 @@ public class GoogleCloudPricingCalculatorPage {
     }
 
     public GoogleCloudPricingCalculatorPage selectMachineType() {
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions
+                        .elementToBeClickable(machineTypeSelect));
         machineTypeSelect.click();
         machineTypeChoice = findElementByLocator(machineTypeChoiceLocator);
         machineTypeChoice.click();
@@ -131,7 +133,7 @@ public class GoogleCloudPricingCalculatorPage {
         numberOfGPUsSelect = findElementByLocator(numberOfGPUsSelectLocator);
         numberOfGPUsSelect.click();
         numberOfGPUsChoice = findElementByLocator(numberOfGPUsChoiceLocator);
-        new WebDriverWait(driver,20)
+        new WebDriverWait(driver, 20)
                 .until(ExpectedConditions
                         .elementToBeClickable(numberOfGPUsChoice)).click();
         GPUTypeSelect = findElementByLocator(GPUTypeSelectLocator);
@@ -142,7 +144,7 @@ public class GoogleCloudPricingCalculatorPage {
     }
 
     public GoogleCloudPricingCalculatorPage addSSD() {
-        new WebDriverWait(driver,10)
+        new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
                         .elementToBeClickable(localSSDSelect));
         localSSDSelect.click();
@@ -152,6 +154,9 @@ public class GoogleCloudPricingCalculatorPage {
     }
 
     public GoogleCloudPricingCalculatorPage selectDatacenter() {
+        new WebDriverWait(driver, 10)
+                .until(ExpectedConditions
+                        .elementToBeClickable(datacenterLocationSelect));
         datacenterLocationSelect.click();
         datacenterLocationChoice = findElementByLocator(datacenterLocationChoiceLocator);
         datacenterLocationChoice.click();
@@ -177,31 +182,31 @@ public class GoogleCloudPricingCalculatorPage {
     }
 
     public String copyVMClass() {
-        return copyVMClassField.getText().replace("VM class:","").trim();
+        return copyVMClassField.getText().replace("VM class:", "").trim();
     }
 
     public String copyInstanceType() {
-        return copyInstanceTypeField.getText().replace("Instance type:","").replace("\nCommitted Use Discount applied","").trim();
+        return copyInstanceTypeField.getText().replace("Instance type:", "").replace("\nCommitted Use Discount applied", "").trim();
     }
 
     public String copyRegion() {
-        return copyRegionField.getText().replace("Region:","").trim();
+        return copyRegionField.getText().replace("Region:", "").trim();
     }
 
     public String copyLocalSSD() {
-        return copyLocalSSDField.getText().replace("Local SSD:","").replace("\nCommitted Use Discount applied","").trim();
+        return copyLocalSSDField.getText().replace("Local SSD:", "").replace("\nCommitted Use Discount applied", "").trim();
     }
 
     public String copyCommitmentTerm() {
-        return copyCommitmentTermField.getText().replace("Commitment term:","").trim();
+        return copyCommitmentTermField.getText().replace("Commitment term:", "").trim();
     }
 
     public String copyInstancesCost() {
-        return copyCostField.getText().replace("Total Estimated Cost: USD","").replace(" per 1 month","").trim();
+        return copyCostField.getText().replace("Total Estimated Cost: USD", "").replace(" per 1 month", "").trim();
     }
 
     private WebElement findElementByLocator(By locator) {
-        return new WebDriverWait(driver, 30)
+        return new WebDriverWait(driver, 10)
                 .until(ExpectedConditions
                         .presenceOfElementLocated(locator));
     }

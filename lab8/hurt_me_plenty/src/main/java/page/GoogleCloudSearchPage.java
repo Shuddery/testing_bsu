@@ -17,6 +17,10 @@ public class GoogleCloudSearchPage {
         this.driver = driver;
     }
 
+    public boolean isInitialized() {
+        return calculatorLink.isDisplayed();
+    }
+
     public GoogleCloudPricingCalculatorPage openCalculator() {
         calculatorLink = findElementByLocator(calculatorLinkLocator);
         calculatorLink.click();
@@ -24,7 +28,7 @@ public class GoogleCloudSearchPage {
     }
 
     private WebElement findElementByLocator(By locator) {
-        return new WebDriverWait(driver, 30)
+        return new WebDriverWait(driver, 25)
                 .until(ExpectedConditions
                         .presenceOfElementLocated(locator));
     }

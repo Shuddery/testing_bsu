@@ -22,13 +22,12 @@ public class GoogleCloudPricingCalculatorTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setupBrowser() {
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+        //System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--window-size=1920,1080");
+        options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
-        driver.manage().window().setSize(new Dimension(1440, 900));
     }
 
     @Test
@@ -64,7 +63,6 @@ public class GoogleCloudPricingCalculatorTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDownBrowser() {
-        driver.quit();
         driver = null;
     }
 }
