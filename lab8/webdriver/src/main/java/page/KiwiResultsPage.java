@@ -20,7 +20,7 @@ public class KiwiResultsPage {
     }
 
     public String copyIntermediateCost() {
-        return waitVisibilityOfElementLocated(intermediateCostLocator)
+        return waitPresenceOfElementLocated(intermediateCostLocator)
                 .getText().replace("$ ", "").trim();
     }
 
@@ -29,7 +29,7 @@ public class KiwiResultsPage {
         return new KiwiBookingPage(driver);
     }
 
-    private WebElement waitVisibilityOfElementLocated(By locator) {
+    private WebElement waitPresenceOfElementLocated(By locator) {
         return new WebDriverWait(driver, 60)
                 .until(ExpectedConditions.presenceOfElementLocated(locator));
     }

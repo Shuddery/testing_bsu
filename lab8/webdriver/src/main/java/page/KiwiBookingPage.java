@@ -17,11 +17,11 @@ public class KiwiBookingPage {
     }
 
     public String copyTotalCost() {
-        return waitVisibilityOfElementLocated(totalPriceLocator).getText().replace("$ ", "").trim();
+        return waitPresenceOfElementLocated(totalPriceLocator).getText().replace("$ ", "").trim();
     }
 
-    private WebElement waitVisibilityOfElementLocated(By locator) {
-        return new WebDriverWait(driver, 30)
+    private WebElement waitPresenceOfElementLocated(By locator) {
+        return new WebDriverWait(driver, 60)
                 .until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 }
