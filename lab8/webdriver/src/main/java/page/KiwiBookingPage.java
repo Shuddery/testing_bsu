@@ -10,7 +10,7 @@ public class KiwiBookingPage {
 
     private WebDriver driver;
 
-    private By totalPriceLocator = By.xpath("(//span[@class=' length-5'])[2]");
+    private By totalPriceLocator = By.xpath("(//span[@class='SpinEffect-value']/span)[3]");
 
     public KiwiBookingPage(WebDriver driver) {
         this.driver = driver;
