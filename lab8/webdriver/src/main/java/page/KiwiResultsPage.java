@@ -22,7 +22,7 @@ public class KiwiResultsPage {
     public String copyIntermediateCost() {
         return waitVisibilityOfElementLocated(intermediateCostLocator)
                 .getText().replace("$ ", "").trim();
-     }
+    }
 
     public KiwiBookingPage openBookingPage() {
         waitElementToBeClickable(bookingButtonLocator).click();
@@ -30,8 +30,8 @@ public class KiwiResultsPage {
     }
 
     private WebElement waitVisibilityOfElementLocated(By locator) {
-        return new WebDriverWait(driver, 30)
-                .until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return new WebDriverWait(driver, 60)
+                .until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     private WebElement waitElementToBeClickable(By locator) {
@@ -39,8 +39,6 @@ public class KiwiResultsPage {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 }
-
-
 
 
 

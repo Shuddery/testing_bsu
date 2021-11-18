@@ -1,9 +1,6 @@
-import com.gargoylesoftware.htmlunit.BrowserVersion;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -17,12 +14,14 @@ import java.util.concurrent.TimeUnit;
 public class KiwiBookingPageTest {
 
     private WebDriver driver;
-    private final static String DESTINATION = "Istanbul";
+    private final static String DESTINATION = "Стамбул";
 
     @BeforeMethod(alwaysRun = true)
     public void setupBrowser() {
         ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless");
+        options.addArguments("--headless");
+        options.addArguments("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36");
+        options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
         options.addArguments("--start-maximized");
         driver = new ChromeDriver(options);
@@ -47,6 +46,5 @@ public class KiwiBookingPageTest {
     @AfterMethod(alwaysRun = true)
     public void tearDownBrowser() {
         driver.quit();
-        driver = null;
     }
 }

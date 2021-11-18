@@ -22,6 +22,6 @@ public class KiwiBookingPage {
 
     private WebElement waitVisibilityOfElementLocated(By locator) {
         return new WebDriverWait(driver, 30)
-                .until(ExpectedConditions.visibilityOfElementLocated(locator));
+                .until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 }
