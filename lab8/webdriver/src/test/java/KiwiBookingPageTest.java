@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class KiwiBookingPageTest {
 
     private WebDriver driver;
-    private final static String DESTINATION = "Минск";
+    private final static String DESTINATION = "Москва";
 
     @BeforeMethod(alwaysRun = true)
     public void setupBrowser() {

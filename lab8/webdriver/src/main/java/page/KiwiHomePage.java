@@ -18,7 +18,7 @@ public class KiwiHomePage {
     private By fromInputLocator = By.xpath("(//div[@class='PlacePickerInputstyled__StyledPlacePickerInput-e55dp-0 gcUvWB']/input)[1]");
     private By fromInputChoiceLocator = By.xpath("//div[@class='PlacePickerstyled__PlacePickerItem-sc-1ialbal-9 lkJldZ']");
 
-    private By destinationInputLocator = By.xpath("(//div[@class='PlacePickerInputstyled__StyledPlacePickerInput-e55dp-0 gcUvWB']/input)[2]");
+    private By destinationInputLocator = By.xpath("//div[@class='PlacePickerInputstyled__StyledPlacePickerInput-e55dp-0 gcUvWB']/input");
     private By destinationInputChoiceLocator = By.xpath("//div[@class='PlacePickerstyled__PlacePickerItem-sc-1ialbal-9 lkJldZ']");
 
     private By bookingHotelCheckboxLocator = By.xpath("//input[@class='Checkbox__Input-sc-1x6twh3-4 bLIjCb']");
