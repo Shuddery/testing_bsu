@@ -15,9 +15,6 @@ public class KiwiHomePage {
 
     private By acceptCookiesButtonLocator = By.xpath("//button[@class='ButtonPrimitive__StyledButtonPrimitive-q2qrvj-0 GCpcO']");
 
-    private By fromInputLocator = By.xpath("(//div[@class='PlacePickerInputstyled__StyledPlacePickerInput-e55dp-0 gcUvWB']/input)[1]");
-    private By fromInputChoiceLocator = By.xpath("//div[@class='PlacePickerstyled__PlacePickerItem-sc-1ialbal-9 lkJldZ']");
-
     private By destinationInputLocator = By.xpath("//div[@class='PlacePickerInputstyled__StyledPlacePickerInput-e55dp-0 gcUvWB']/input");
     private By destinationInputChoiceLocator = By.xpath("//div[@class='PlacePickerstyled__PlacePickerItem-sc-1ialbal-9 lkJldZ']");
 
@@ -36,14 +33,6 @@ public class KiwiHomePage {
 
     public KiwiHomePage acceptCookies() {
         waitElementToBeClickable(acceptCookiesButtonLocator).click();
-        return this;
-    }
-
-    public KiwiHomePage enterFrom(String from) {
-        findElementByLocatorStaleElementReferenceException(fromInputLocator)
-                .sendKeys(from);
-        findElementByLocatorStaleElementReferenceException(fromInputChoiceLocator)
-                .sendKeys(Keys.ENTER);
         return this;
     }
 

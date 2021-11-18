@@ -11,7 +11,7 @@ public class KiwiResultsPage {
 
     private WebDriver driver;
 
-    private By intermediateCostLocator = By.xpath("(//span[@class=' length-5'])[1]");
+    private By intermediateCostLocator = By.xpath("(//strong[@class='ResultCardstyled__PriceText-vsw8q3-9 eURpEV']/span)[1]");
 
     private By bookingButtonLocator = By.xpath("(//a[@class='ButtonPrimitive__StyledButtonPrimitive-q2qrvj-0 eDjyNZ'])[1]");
 
