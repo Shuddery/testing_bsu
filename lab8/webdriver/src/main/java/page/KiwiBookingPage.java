@@ -17,7 +17,7 @@ public class KiwiBookingPage {
     }
 
     public String copyTotalCost() {
-        return waitPresenceOfElementLocated(totalPriceLocator).getText().replace("$ ", "").trim();
+        return waitPresenceOfElementLocated(totalPriceLocator).getText().replace("€", "").trim();
     }
 
     private WebElement waitPresenceOfElementLocated(By locator) {

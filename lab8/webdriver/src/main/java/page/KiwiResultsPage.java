@@ -21,7 +21,7 @@ public class KiwiResultsPage {
 
     public String copyIntermediateCost() {
         return waitPresenceOfElementLocated(intermediateCostLocator)
-                .getText().replace("$ ", "").trim();
+                .getText().replace("€", "").trim();
     }
 
     public KiwiBookingPage openBookingPage() {
