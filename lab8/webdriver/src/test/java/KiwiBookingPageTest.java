@@ -40,7 +40,7 @@ public class KiwiBookingPageTest {
         final String intermediateCost = kiwiResultsPage.copyIntermediateCost();
         final String totalCost = kiwiResultsPage.openBookingPage().copyTotalCost();
 
-        Assert.assertEquals("БЕСПЛАТНО", totalCost);
+        Assert.assertEquals(intermediateCost, totalCost);
     }
 
     @AfterMethod(alwaysRun = true)
