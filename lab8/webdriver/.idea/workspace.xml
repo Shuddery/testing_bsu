@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ce2ffb6-59cd-446d-8e31-df9092cf7418" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/page/KiwiBookingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/page/KiwiBookingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/page/KiwiResultsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/page/KiwiResultsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/page/KiwiHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/page/KiwiHomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/KiwiBookingPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/KiwiBookingPageTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +101,7 @@
       <workItem from="1637228047695" duration="3857000" />
       <workItem from="1637246718959" duration="643000" />
       <workItem from="1637251685200" duration="5380000" />
-      <workItem from="1637265032210" duration="1898000" />
+      <workItem from="1637265032210" duration="2432000" />
     </task>
     <servers />
   </component>
