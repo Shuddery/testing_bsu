@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ce2ffb6-59cd-446d-8e31-df9092cf7418" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/page/KiwiBookingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/page/KiwiBookingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/page/KiwiResultsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/page/KiwiResultsPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +102,7 @@
       <workItem from="1637251685200" duration="5380000" />
       <workItem from="1637265032210" duration="4920000" />
       <workItem from="1637345036101" duration="2234000" />
-      <workItem from="1637349104536" duration="673000" />
+      <workItem from="1637349104536" duration="1279000" />
     </task>
     <servers />
   </component>

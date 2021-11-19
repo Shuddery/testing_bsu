@@ -10,7 +10,7 @@ public class KiwiBookingPage {
 
     private WebDriver driver;
 
-    private By totalPriceLocator = By.xpath("/html/body/div[2]/div[2]/div[1]/div/div/div[2]/div/div/div[1]/div/div/div[3]/div[2]/div/div/div/span/span/span[2]/span/span");
+    private By totalPriceLocator = By.xpath("//div[@class='ReservationBill-item-priceWrapper']/div/div/span/span/span/span/span");
 
     public KiwiBookingPage(WebDriver driver) {
         this.driver = driver;
