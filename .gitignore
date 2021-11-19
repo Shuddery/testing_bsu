@@ -4,6 +4,8 @@ target/
 bin/
 idea/
 *.iml
+*idea/
+**/*idea/
 **/*.iml
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij,java
