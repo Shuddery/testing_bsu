@@ -5,38 +5,29 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import waits.Waits;
 
 
-public class KiwiResultsPage {
+public class KiwiResultsPage extends AbstractPage {
 
-    private WebDriver driver;
-
-    private By intermediateCostLocator = By.xpath("(//strong[@class='ResultCardstyled__PriceText-vsw8q3-9 eURpEV']/span)[1]");
-    private By bookingButtonLocator = By.xpath("(//a[@class='ButtonPrimitive__StyledButtonPrimitive-q2qrvj-0 eDjyNZ'])[1]");
+    private By intermediateCostLocator = By.xpath("(//strong[contains(@class, 'ResultCardstyled')]/span)[1]");
+    private By bookingButtonLocator = By.xpath("(//div[contains(@data-test, 'BookingButton')])[1]");
 
     public KiwiResultsPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    public String copyIntermediateCost() {
-        return waitPresenceOfElementLocated(intermediateCostLocator)
-                .getText().replace("€", "").trim();
-    }
-
-    public KiwiBookingPage openBookingPage() {
-        waitElementToBeClickable(bookingButtonLocator).click();
+    @Override
+    public KiwiBookingPage openPage() {
+        Waits.waitElementToBeClickable(driver, bookingButtonLocator).click();
         return new KiwiBookingPage(driver);
     }
 
-    private WebElement waitPresenceOfElementLocated(By locator) {
-        return new WebDriverWait(driver, 60)
-                .until(ExpectedConditions.presenceOfElementLocated(locator));
+    public String copyIntermediateCost() {
+        return Waits.waitPresenceOfElementLocated(driver, intermediateCostLocator)
+                .getText().replace("€", "").trim();
     }
 
-    private WebElement waitElementToBeClickable(By locator) {
-        return new WebDriverWait(driver, 15)
-                .until(ExpectedConditions.elementToBeClickable(locator));
-    }
 }
 
 

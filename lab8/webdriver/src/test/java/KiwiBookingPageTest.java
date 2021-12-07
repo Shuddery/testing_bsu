@@ -8,9 +8,6 @@ import org.testng.annotations.Test;
 import page.KiwiHomePage;
 import page.KiwiResultsPage;
 
-import java.util.concurrent.TimeUnit;
-
-
 public class KiwiBookingPageTest {
 
     private WebDriver driver;
@@ -31,14 +28,14 @@ public class KiwiBookingPageTest {
     void compareIntermediateCostToTotalPriceTest() {
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
 
-        final KiwiResultsPage kiwiResultsPage  = kiwiHomePage.openHomePage()
+        final KiwiResultsPage kiwiResultsPage  = kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(DESTINATION)
                 .searchFlights();
 
         final String intermediateCost = kiwiResultsPage.copyIntermediateCost();
-        final String totalCost = kiwiResultsPage.openBookingPage().copyTotalCost();
+        final String totalCost = kiwiResultsPage.openPage().copyTotalCost();
 
         Assert.assertEquals(intermediateCost, totalCost);
     }
