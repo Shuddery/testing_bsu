@@ -1,8 +1,7 @@
 package page;
 
+import model.Flight;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import waits.Waits;
 
 
@@ -10,7 +9,8 @@ public class KiwiHomePage extends AbstractPage{
 
     private static final String HOMEPAGE_URL = "https://www.kiwi.com/ru/";
 
-    private By acceptCookiesButtonLocator = By.xpath("//button[@type='button' and contains (., 'Принять')]");
+    //private By acceptCookiesButtonLocator = By.xpath("//button[@type='button' and contains (., 'Принять')]");
+    private By acceptCookiesButtonLocator = By.xpath("//button[@class='ButtonPrimitive__StyledButtonPrimitive-q2qrvj-0 GCpcO']");
 
     private By destinationInputLocator = By.xpath("//div[contains(@data-test, 'PlacePickerInput-destination')]/input");
     private By destinationInputChoiceLocator = By.xpath("//div[contains(@data-test, 'PlacePickerRow-city')]");
@@ -34,9 +34,9 @@ public class KiwiHomePage extends AbstractPage{
         return this;
     }
 
-    public KiwiHomePage enterDestination(String destination) {
+    public KiwiHomePage enterDestination(Flight trip) {
         Waits.findElementByLocatorStaleElementReferenceException(driver, destinationInputLocator)
-                .sendKeys(destination);
+                .sendKeys(trip.getDestination());
         Waits.findElementByLocatorStaleElementReferenceException(driver, destinationInputChoiceLocator)
                 .sendKeys(Keys.ENTER);
         return this;

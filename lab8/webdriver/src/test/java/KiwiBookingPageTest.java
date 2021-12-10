@@ -1,47 +1,32 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import model.Flight;
 import org.testng.annotations.Test;
 import page.KiwiHomePage;
 import page.KiwiResultsPage;
+import service.FlightCreator;
 
-public class KiwiBookingPageTest {
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
-    private WebDriver driver;
-    private final static String DESTINATION = "Стамбул";
 
-    @BeforeMethod(alwaysRun = true)
-    public void setupBrowser() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--user-agent='Mozilla/5.0 (Windows Phone 10.0; Android 4.2.1; Microsoft; Lumia 640 XL LTE) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Mobile Safari/537.36 Edge/12.10166'");
-        options.addArguments("--disable-gpu");
-        options.addArguments("--window-size=1920,1080");
-        options.addArguments("--start-maximized");
-        driver = new ChromeDriver(options);
-    }
+public class KiwiBookingPageTest extends CommonConditions{
 
     @Test
     void compareIntermediateCostToTotalPriceTest() {
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
 
+        Flight testFlight = FlightCreator.withEmptyPlaceOfDeparture();
         final KiwiResultsPage kiwiResultsPage  = kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
-                .enterDestination(DESTINATION)
+                .enterDestination(testFlight)
                 .searchFlights();
 
         final String intermediateCost = kiwiResultsPage.copyIntermediateCost();
         final String totalCost = kiwiResultsPage.openPage().copyTotalCost();
 
-        Assert.assertEquals(intermediateCost, totalCost);
+        assertThat(intermediateCost, is(equalTo(totalCost)));
+
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDownBrowser() {
-        driver.quit();
-    }
 }
