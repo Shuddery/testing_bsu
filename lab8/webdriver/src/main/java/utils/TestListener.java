@@ -23,7 +23,7 @@ public class TestListener implements ITestListener {
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
-
+        saveScreenshot();
     }
 
     public void onTestFailure(ITestResult iTestResult) {
