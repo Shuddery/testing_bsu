@@ -8,7 +8,7 @@ import service.FlightCreator;
 public class KiwiHomePageTest extends CommonConditions{
 
     @Test
-    public void isSearchButtonDisabled() {
+    void isSearchButtonDisabled() {
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
 
         kiwiHomePage.openPage()

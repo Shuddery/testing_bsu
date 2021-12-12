@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 public class KiwiResultsPageTest extends CommonConditions{
 
     @Test
-    public void theBestOptionIsDisplayedFirstTest() {
+    void theBestOptionIsDisplayedFirstTest() {
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
 
         Flight testFlight = FlightCreator.withEmptyPlaceOfDeparture();
