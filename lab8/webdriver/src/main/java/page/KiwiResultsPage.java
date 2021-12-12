@@ -12,6 +12,7 @@ public class KiwiResultsPage extends AbstractPage {
 
     private By intermediateCostLocator = By.xpath("(//strong[contains(@class, 'ResultCardstyled')]/span)[1]");
     private By bookingButtonLocator = By.xpath("(//div[contains(@data-test, 'BookingButton')])[1]");
+    private By priceOfTheBestOption = By.xpath("(//div[contains(@class, 'DataContainer')]/span)[1]");
 
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
@@ -25,6 +26,11 @@ public class KiwiResultsPage extends AbstractPage {
 
     public String copyIntermediateCost() {
         return Waits.waitPresenceOfElementLocated(driver, intermediateCostLocator)
+                .getText().replace("€", "").trim();
+    }
+
+    public String copyPriceOfTheBestOption() {
+        return Waits.waitPresenceOfElementLocated(driver, priceOfTheBestOption)
                 .getText().replace("€", "").trim();
     }
 

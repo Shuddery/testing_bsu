@@ -8,11 +8,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-
-public class KiwiBookingPageTest extends CommonConditions{
+public class KiwiResultsPageTest extends CommonConditions{
 
     @Test
-    void compareIntermediateCostToTotalPriceTest() {
+    public void theBestOptionIsDisplayedFirstTest() {
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
 
         Flight testFlight = FlightCreator.withEmptyPlaceOfDeparture();
@@ -22,11 +21,9 @@ public class KiwiBookingPageTest extends CommonConditions{
                 .enterDestination(testFlight)
                 .searchFlights();
 
+        final String priceOfTheBestOption = kiwiResultsPage.copyPriceOfTheBestOption();
         final String intermediateCost = kiwiResultsPage.copyIntermediateCost();
-        final String totalCost = kiwiResultsPage.openPage().copyTotalCost();
 
-        assertThat(intermediateCost, is(equalTo(totalCost)));
-
+        assertThat(priceOfTheBestOption, is(equalTo(intermediateCost)));
     }
-
 }

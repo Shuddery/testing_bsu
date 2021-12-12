@@ -2,9 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Smoke" verbose="1" >
-    <test name="compareIntermediateCostToTotalPriceTest"   >
+    <test name="isSearchButtonDisabled"   >
         <classes>
-            <class name="KiwiBookingPageTest" />
+            <class name="KiwiHomePageTest" />
         </classes>
     </test>
 </suite>
