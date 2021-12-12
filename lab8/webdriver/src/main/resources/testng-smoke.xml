@@ -2,9 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Smoke" verbose="1" >
-    <test name="isErrorMessageDisplayed"   >
+    <test name="theTotalPriceWithInsuranceIsCalculatedCorrectly"   >
         <classes>
-            <class name="KiwiResultsPageTest" />
+            <class name="KiwiBookingPageTest" />
         </classes>
     </test>
 </suite>
