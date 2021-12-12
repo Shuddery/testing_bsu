@@ -22,6 +22,10 @@ public class KiwiHomePage extends AbstractPage{
 
     private By crossToCloseTheAutomaticDeparturePointLocator = By.xpath("//div[contains(@data-test, 'PlacePickerInputPlace-close')]");
 
+    private By flightServiceClassLocator = By.xpath("//div[contains(@data-test, 'CabinClassField-active-economy')]");
+    private By flightServiceClassChoiceLocator = By.xpath("//a[contains(@data-test, 'CabinClassPicker-filter-first')]");
+    private By acceptFlightServiceClassChoiceButtonLocator = By.xpath("//button[contains(@data-test, 'CabinClassFooter-done')]");
+
     public KiwiHomePage(WebDriver driver) {
         super(driver);
     }
@@ -57,6 +61,17 @@ public class KiwiHomePage extends AbstractPage{
 
     public boolean isSearchButtonEnabled() {
         return Waits.findElementByLocator(driver, disabledSearchButtonLocator).isEnabled();
+    }
+
+    public KiwiHomePage chooseFlightServiceClass() {
+        Waits.waitElementToBeClickable(driver, flightServiceClassLocator).click();
+        Waits.waitElementToBeClickable(driver, flightServiceClassChoiceLocator).click();
+        return this;
+    }
+
+    public KiwiHomePage acceptFlightServiceClass() {
+        Waits.waitElementToBeClickable(driver, acceptFlightServiceClassChoiceButtonLocator).click();
+        return this;
     }
 
     public KiwiResultsPage searchFlights() {

@@ -10,11 +10,13 @@ import static org.hamcrest.Matchers.is;
 
 public class KiwiResultsPageTest extends CommonConditions{
 
-    @Test
-    void theBestOptionIsDisplayedFirstTest() {
-        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+    final String ERROR_MESSAGE = "Извините, нам не удалось ничего найти по вашему запросу";
+    Flight testFlight = FlightCreator.withEmptyPlaceOfDeparture();
 
-        Flight testFlight = FlightCreator.withEmptyPlaceOfDeparture();
+    @Test
+    void isTheBestOptionDisplayedFirstTest() {
+
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
         final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
@@ -25,5 +27,21 @@ public class KiwiResultsPageTest extends CommonConditions{
         final String intermediateCost = kiwiResultsPage.copyIntermediateCost();
 
         assertThat(priceOfTheBestOption, is(equalTo(intermediateCost)));
+    }
+
+    @Test
+    void isErrorMessageDisplayed() {
+
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
+                .acceptCookies()
+                .turnOffBookingHotelCheckbox()
+                .chooseFlightServiceClass()
+                .acceptFlightServiceClass()
+                .enterDestination(testFlight)
+                .searchFlights();
+
+        assertThat(kiwiResultsPage.isErrorMessageDisplayed(), is(true));
+
     }
 }

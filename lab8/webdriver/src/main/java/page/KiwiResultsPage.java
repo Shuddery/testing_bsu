@@ -11,8 +11,12 @@ import waits.Waits;
 public class KiwiResultsPage extends AbstractPage {
 
     private By intermediateCostLocator = By.xpath("(//strong[contains(@class, 'ResultCardstyled')]/span)[1]");
+
     private By bookingButtonLocator = By.xpath("(//div[contains(@data-test, 'BookingButton')])[1]");
+
     private By priceOfTheBestOption = By.xpath("(//div[contains(@class, 'DataContainer')]/span)[1]");
+
+    private By errorMessageLocator = By.xpath("//div[contains(@class, 'NoResultsFiltersWrapper')]/div[contains(@class, 'StyledHeading')]");
 
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
@@ -34,6 +38,9 @@ public class KiwiResultsPage extends AbstractPage {
                 .getText().replace("€", "").trim();
     }
 
+    public boolean isErrorMessageDisplayed() {
+        return Waits.waitPresenceOfElementLocated(driver, errorMessageLocator).isDisplayed();
+    }
 }
 
 
