@@ -1,9 +1,9 @@
 package page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import waits.Waits;
 
 public class KiwiBookingPage extends AbstractPage {
@@ -45,9 +45,9 @@ public class KiwiBookingPage extends AbstractPage {
         return this;
     }
 
-    public KiwiBookingPage addTravelPlusInsurance() {
-        Waits.waitElementToBeClickable(driver, travelPlusInsuranceLocator).click();
-        return this;
+    public void addTravelPlusInsurance() {
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", Waits.findElementByLocator(driver, travelPlusInsuranceLocator));
     }
 
 }
