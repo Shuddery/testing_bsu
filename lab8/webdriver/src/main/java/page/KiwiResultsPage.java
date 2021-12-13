@@ -20,7 +20,7 @@ public class KiwiResultsPage extends AbstractPage {
 
     private By moreDetailsLocator = By.xpath("(//div[contains(@data-test, 'ResultCardBadges')])[1]");
 
-    private By dockingLocator = By.xpath("(//div[contains(@class, 'ItemText')]/span)[1]");
+    private By dockingLocator = By.xpath("(//div[contains(@class, 'Stack__StyledStack')]/span[contains(@class, 'Text__StyledText')])[2]");
 
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
