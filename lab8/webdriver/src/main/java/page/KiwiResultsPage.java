@@ -18,6 +18,10 @@ public class KiwiResultsPage extends AbstractPage {
 
     private By errorMessageLocator = By.xpath("//div[contains(@class, 'NoResultsFiltersWrapper')]/div[contains(@class, 'StyledHeading')]");
 
+    private By moreDetailsLocator = By.xpath("(//div[contains(@data-test, 'ResultCardBadges')])[1]");
+
+    private By dockingLocator = By.xpath("(//div[contains(@class, 'ItemText')]/span)[1]");
+
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
     }
@@ -40,6 +44,15 @@ public class KiwiResultsPage extends AbstractPage {
 
     public boolean isErrorMessageDisplayed() {
         return Waits.waitPresenceOfElementLocated(driver, errorMessageLocator).isDisplayed();
+    }
+
+    public KiwiResultsPage clickOnMoreDetails() {
+        Waits.waitElementToBeClickable(driver, moreDetailsLocator).click();
+        return this;
+    }
+
+    public boolean isDockingDisplayed() {
+        return Waits.waitPresenceOfElementLocated(driver, dockingLocator).isDisplayed();
     }
 }
 

@@ -10,7 +10,6 @@ import static org.hamcrest.Matchers.is;
 
 public class KiwiResultsPageTest extends CommonConditions{
 
-    final String ERROR_MESSAGE = "Извините, нам не удалось ничего найти по вашему запросу";
     Flight testFlight = FlightCreator.withEmptyPlaceOfDeparture();
 
     @Test
@@ -30,7 +29,7 @@ public class KiwiResultsPageTest extends CommonConditions{
     }
 
     @Test
-    void isErrorMessageDisplayed() {
+    void isErrorMessageDisplayedWithIncorrectData() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
         final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
@@ -42,6 +41,21 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .searchFlights();
 
         assertThat(kiwiResultsPage.isErrorMessageDisplayed(), is(true));
+
+    }
+
+    @Test
+    void isDockingDisplayedWithFilterToAllowNightConnections() {
+
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
+                .acceptCookies()
+                .turnOffBookingHotelCheckbox()
+                .enterDestination(testFlight)
+                .searchFlights()
+                .clickOnMoreDetails();
+
+        assertThat(kiwiResultsPage.isDockingDisplayed(), is(true));
 
     }
 }
