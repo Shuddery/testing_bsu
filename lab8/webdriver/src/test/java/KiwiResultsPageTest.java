@@ -11,7 +11,6 @@ import static org.hamcrest.Matchers.is;
 public class KiwiResultsPageTest extends CommonConditions{
 
     Flight testFlightWithEmptyPlaceOfDeparture = FlightCreator.withEmptyPlaceOfDeparture();
-    Flight testFlightWithFullWay = FlightCreator.withFullWay();
 
     @Test
     void isTheBestOptionDisplayedFirstTest() {
@@ -49,12 +48,10 @@ public class KiwiResultsPageTest extends CommonConditions{
     void isDockingDisplayedWithFilterToAllowNightConnections() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
-        kiwiHomePage.openPage()
+        final KiwiResultsPage kiwiResultsPage =  kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
-                .closeTheAutomaticDeparturePoint();
-        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.enterPlaceOfDeparture(testFlightWithFullWay)
-                .enterDestination(testFlightWithFullWay)
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
                 .searchFlights()
                 .clickOnMoreDetails();
 
