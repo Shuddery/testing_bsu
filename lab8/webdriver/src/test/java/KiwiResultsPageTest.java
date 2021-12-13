@@ -10,7 +10,8 @@ import static org.hamcrest.Matchers.is;
 
 public class KiwiResultsPageTest extends CommonConditions{
 
-    Flight testFlight = FlightCreator.withEmptyPlaceOfDeparture();
+    Flight testFlightWithEmptyPlaceOfDeparture = FlightCreator.withEmptyPlaceOfDeparture();
+    Flight testFlightWithFullWay = FlightCreator.withFullWay();
 
     @Test
     void isTheBestOptionDisplayedFirstTest() {
@@ -19,7 +20,7 @@ public class KiwiResultsPageTest extends CommonConditions{
         final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
-                .enterDestination(testFlight)
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
                 .searchFlights();
 
         final String priceOfTheBestOption = kiwiResultsPage.copyPriceOfTheBestOption();
@@ -37,7 +38,7 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .turnOffBookingHotelCheckbox()
                 .chooseFlightServiceClass()
                 .acceptFlightServiceClass()
-                .enterDestination(testFlight)
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
                 .searchFlights();
 
         assertThat(kiwiResultsPage.isErrorMessageDisplayed(), is(true));
@@ -51,7 +52,9 @@ public class KiwiResultsPageTest extends CommonConditions{
         final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
-                .enterDestination(testFlight)
+                .closeTheAutomaticDeparturePoint()
+                .enterPlaceOfDeparture(testFlightWithFullWay)
+                .enterDestination(testFlightWithFullWay)
                 .searchFlights()
                 .clickOnMoreDetails();
 

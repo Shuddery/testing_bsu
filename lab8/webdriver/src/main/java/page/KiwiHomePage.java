@@ -12,6 +12,9 @@ public class KiwiHomePage extends AbstractPage{
     //private By acceptCookiesButtonLocator = By.xpath("//button[@type='button' and contains (., 'Принять')]");
     private By acceptCookiesButtonLocator = By.xpath("//button[@class='ButtonPrimitive__StyledButtonPrimitive-q2qrvj-0 GCpcO']");
 
+    private By placeOfDepartureInputLocator = By.xpath("//div[contains(@data-test, 'PlacePickerInput-origin')]/input");
+    private By placeOfDepartureInputChoiceLocator = By.xpath("(//div[contains(@data-test, 'PlacePickerRow-city')])[1]");
+
     private By destinationInputLocator = By.xpath("//div[contains(@data-test, 'PlacePickerInput-destination')]/input");
     private By destinationInputChoiceLocator = By.xpath("//div[contains(@data-test, 'PlacePickerRow-city')]");
 
@@ -41,6 +44,14 @@ public class KiwiHomePage extends AbstractPage{
         return this;
     }
 
+    public KiwiHomePage enterPlaceOfDeparture(Flight trip) {
+        Waits.findElementByLocatorStaleElementReferenceException(driver, placeOfDepartureInputLocator)
+                .sendKeys(trip.getPlaceOfDeparture());
+        Waits.findElementByLocatorStaleElementReferenceException(driver, placeOfDepartureInputChoiceLocator)
+                .sendKeys(Keys.ENTER);
+        return this;
+    }
+
     public KiwiHomePage enterDestination(Flight trip) {
         Waits.findElementByLocatorStaleElementReferenceException(driver, destinationInputLocator)
                 .sendKeys(trip.getDestination());
@@ -55,8 +66,9 @@ public class KiwiHomePage extends AbstractPage{
         return this;
     }
 
-    public void closeTheAutomaticDeparturePoint() {
+    public KiwiHomePage closeTheAutomaticDeparturePoint() {
         Waits.waitElementToBeClickable(driver, crossToCloseTheAutomaticDeparturePointLocator).click();
+        return this;
     }
 
     public boolean isSearchButtonEnabled() {
