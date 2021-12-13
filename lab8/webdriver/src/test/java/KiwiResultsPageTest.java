@@ -49,11 +49,11 @@ public class KiwiResultsPageTest extends CommonConditions{
     void isDockingDisplayedWithFilterToAllowNightConnections() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
-        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
+        kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
-                .closeTheAutomaticDeparturePoint()
-                .enterPlaceOfDeparture(testFlightWithFullWay)
+                .closeTheAutomaticDeparturePoint();
+        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.enterPlaceOfDeparture(testFlightWithFullWay)
                 .enterDestination(testFlightWithFullWay)
                 .searchFlights()
                 .clickOnMoreDetails();
