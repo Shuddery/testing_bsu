@@ -12,6 +12,28 @@ public class KiwiResultsPageTest extends CommonConditions{
     Flight testFlightWithEmptyPlaceOfDeparture = FlightCreator.withEmptyPlaceOfDeparture();
 
     @Test
+    void intermediateCostBecomesHigherWithPassengersIncrementTest() {
+
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
+                .acceptCookies()
+                .turnOffBookingHotelCheckbox()
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .searchFlights();
+
+        final double intermediateCost = Double.parseDouble(kiwiResultsPage.copyIntermediateCost());
+
+        final double changedIntermediateCost = Double.parseDouble(kiwiResultsPage.openPassengersAndBagsField()
+                .incrementAmountOfPassengers()
+                .closePassengersAndBagsField()
+                .searchFlightsWithChangedAmountOfPassengers()
+                .copyIntermediateCost());
+
+        assertThat(intermediateCost, is(lessThan(changedIntermediateCost)));
+
+    }
+
+    @Test
     void theBestOptionIsDisplayedFirstTest() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
@@ -58,26 +80,4 @@ public class KiwiResultsPageTest extends CommonConditions{
 
     }
 
-    @Test
-    void intermediateCostBecomesHigherWithPassengersIncrementTest() {
-
-        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
-        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
-                .acceptCookies()
-                .turnOffBookingHotelCheckbox()
-                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
-                .searchFlights();
-
-        final double intermediateCost = Double.parseDouble(kiwiResultsPage.copyIntermediateCost().replace(",", ".").trim());
-
-        final double changedIntermediateCost = Double.parseDouble(kiwiResultsPage.openPassengersAndBagsField()
-                .incrementAmountOfPassengers()
-                .closePassengersAndBagsField()
-                .searchFlightsWithChangedAmountOfPassengers()
-                .copyIntermediateCost()
-                .replace(",", ".").trim());
-
-        assertThat(intermediateCost, is(lessThan(changedIntermediateCost)));
-
-    }
 }
