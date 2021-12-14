@@ -29,7 +29,7 @@ public class Waits {
         }
     }
 
-    public static WebElement waitPresenceOfElementLocated(WebDriver driver, By locator) {
+    public static WebElement waitVisibilityOfElementLocated(WebDriver driver, By locator) {
         return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }

@@ -26,17 +26,17 @@ public class KiwiBookingPage extends AbstractPage {
     }
 
     public String copyTotalCost() {
-        return Waits.waitPresenceOfElementLocated(driver, totalPriceLocator).getText()
+        return Waits.waitVisibilityOfElementLocated(driver, totalPriceLocator).getText()
                 .replace(" €", "").trim();
     }
 
     public String copyPriceForTicket() {
-        return Waits.waitPresenceOfElementLocated(driver, priceForTicketLocator).getText()
+        return Waits.waitVisibilityOfElementLocated(driver, priceForTicketLocator).getText()
                 .replace(" €", "").trim();
     }
 
     public String copyPriceForInsurance() {
-        return Waits.waitPresenceOfElementLocated(driver, priceForInsuranceLocator).getText()
+        return Waits.waitVisibilityOfElementLocated(driver, priceForInsuranceLocator).getText()
                 .replace(" €", "").trim();
     }
 

@@ -38,17 +38,17 @@ public class KiwiResultsPage extends AbstractPage {
     }
 
     public String copyIntermediateCost() {
-        return Waits.waitPresenceOfElementLocated(driver, intermediateCostLocator)
+        return Waits.waitVisibilityOfElementLocated(driver, intermediateCostLocator)
                 .getText().replace(" €", "").trim();
     }
 
     public String copyPriceOfTheBestOption() {
-        return Waits.waitPresenceOfElementLocated(driver, priceOfTheBestOption)
+        return Waits.waitVisibilityOfElementLocated(driver, priceOfTheBestOption)
                 .getText().replace(" €", "").trim();
     }
 
     public boolean isErrorMessageDisplayed() {
-        return Waits.waitPresenceOfElementLocated(driver, errorMessageLocator).isDisplayed();
+        return Waits.waitVisibilityOfElementLocated(driver, errorMessageLocator).isDisplayed();
     }
 
     public KiwiResultsPage clickOnMoreDetails() {
@@ -57,7 +57,7 @@ public class KiwiResultsPage extends AbstractPage {
     }
 
     public boolean isDockingDisplayed() {
-        return Waits.waitPresenceOfElementLocated(driver, dockingLocator).isDisplayed();
+        return Waits.waitVisibilityOfElementLocated(driver, dockingLocator).isDisplayed();
     }
 
     public KiwiResultsPage openPassengersAndBagsField() {
