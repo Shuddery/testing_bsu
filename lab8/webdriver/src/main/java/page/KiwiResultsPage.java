@@ -39,12 +39,12 @@ public class KiwiResultsPage extends AbstractPage {
 
     public String copyIntermediateCost() {
         return Waits.waitPresenceOfElementLocated(driver, intermediateCostLocator)
-                .getText().replace("$", "").trim();
+                .getText().replace(" €", "").trim();
     }
 
     public String copyPriceOfTheBestOption() {
         return Waits.waitPresenceOfElementLocated(driver, priceOfTheBestOption)
-                .getText().replace("$", "").trim();
+                .getText().replace(" €", "").trim();
     }
 
     public boolean isErrorMessageDisplayed() {
