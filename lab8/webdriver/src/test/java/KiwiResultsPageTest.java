@@ -35,6 +35,24 @@ public class KiwiResultsPageTest extends CommonConditions{
     }
 
     @Test
+    void intermediateCostBecomesHigherWithCheckedBagsIncrementTest() {
+
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
+                .acceptCookies()
+                .turnOffBookingHotelCheckbox()
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .searchFlights();
+
+        final int intermediateCost = Integer.parseInt(kiwiResultsPage.copyIntermediateCost());
+
+        final int changedIntermediateCost = Integer.parseInt(kiwiResultsPage.incrementAmountOfCheckedBags().copyIntermediateCost());
+
+        assertThat(intermediateCost, is(lessThan(changedIntermediateCost)));
+
+    }
+
+    @Test
     void theBestOptionIsDisplayedFirstTest() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);

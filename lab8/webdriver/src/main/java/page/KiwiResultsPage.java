@@ -2,9 +2,6 @@ package page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import waits.Waits;
 
 
@@ -26,6 +23,8 @@ public class KiwiResultsPage extends AbstractPage {
     private By incrementPassengersButtonLocator = By.xpath("(//div[contains(@data-test, 'PassengersRow-adults')]//button[contains(@class, 'ButtonPrimitive__StyledButtonPrimitive')])[2]");
     private By acceptChangesButtonLocator = By.xpath("//button[contains(@data-test, 'PassengersFieldFooter-done')]");
     private By searchButtonLocator = By.xpath("//a[contains(@data-test, 'SearchButton')]");
+
+    private By incrementCheckedBagsButtonLocator = By.xpath("(//div[contains(@data-test, 'BagsPopup-checked')]//button)[2]");
 
 
     public KiwiResultsPage(WebDriver driver) {
@@ -76,8 +75,12 @@ public class KiwiResultsPage extends AbstractPage {
         return this;
     }
 
-    public KiwiResultsPage searchFlightsWithChangedAmountOfPassengers() {
+    public void searchFlightsWithChangedAmountOfPassengers() {
         Waits.waitElementToBeClickable(driver, searchButtonLocator).click();
+    }
+
+    public KiwiResultsPage incrementAmountOfCheckedBags() {
+        Waits.waitElementToBeClickable(driver, incrementCheckedBagsButtonLocator).click();
         return this;
     }
 }
