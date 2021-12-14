@@ -31,6 +31,6 @@ public class Waits {
 
     public static WebElement waitPresenceOfElementLocated(WebDriver driver, By locator) {
         return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(locator));
+                .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 }
