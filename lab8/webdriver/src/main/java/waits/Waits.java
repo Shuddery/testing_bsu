@@ -21,14 +21,6 @@ public class Waits {
                         .presenceOfElementLocated(locator));
     }
 
-    public static WebElement findElementByLocatorStaleElementReferenceException(WebDriver driver, By locator) {
-        try {
-            return findElementByLocator(driver, locator);
-        } catch (StaleElementReferenceException e) {
-            return findElementByLocator(driver, locator);
-        }
-    }
-
     public static WebElement waitVisibilityOfElementLocated(WebDriver driver, By locator) {
         return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
