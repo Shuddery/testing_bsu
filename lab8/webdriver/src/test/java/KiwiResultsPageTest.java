@@ -21,9 +21,9 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
                 .searchFlights();
 
-        final double intermediateCost = Double.parseDouble(kiwiResultsPage.copyIntermediateCost());
+        final int intermediateCost = Integer.parseInt(kiwiResultsPage.copyIntermediateCost());
 
-        final double changedIntermediateCost = Double.parseDouble(kiwiResultsPage.openPassengersAndBagsField()
+        final int changedIntermediateCost = Integer.parseInt(kiwiResultsPage.openPassengersAndBagsField()
                 .incrementAmountOfPassengers()
                 .closePassengersAndBagsField()
                 .searchFlightsWithChangedAmountOfPassengers()
