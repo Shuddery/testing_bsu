@@ -60,6 +60,7 @@ public class KiwiResultsPageTest extends CommonConditions{
 
     @Test
     void intermediateCostBecomesHigherWithPassengersIncrementTest() {
+
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
         final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
                 .acceptCookies()

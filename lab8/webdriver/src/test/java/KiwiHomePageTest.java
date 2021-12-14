@@ -6,6 +6,7 @@ public class KiwiHomePageTest extends CommonConditions{
 
     @Test
     void isSearchButtonDisabled() {
+
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
 
         kiwiHomePage.openPage()

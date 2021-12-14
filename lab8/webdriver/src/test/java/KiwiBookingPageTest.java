@@ -1,5 +1,4 @@
 import model.Flight;
-import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
 import page.KiwiBookingPage;
 import page.KiwiHomePage;
@@ -13,7 +12,7 @@ import static org.hamcrest.Matchers.is;
 
 public class KiwiBookingPageTest extends CommonConditions{
 
-    Flight testFlight = FlightCreator.withEmptyPlaceOfDeparture();
+    Flight testFlightWithEmptyPlaceOfDeparture = FlightCreator.withEmptyPlaceOfDeparture();
 
     @Test
     void compareIntermediateCostToTotalPriceTest() {
@@ -22,7 +21,7 @@ public class KiwiBookingPageTest extends CommonConditions{
         final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
-                .enterDestination(testFlight)
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
                 .searchFlights();
 
         final String intermediateCost = kiwiResultsPage.copyIntermediateCost();
@@ -36,15 +35,15 @@ public class KiwiBookingPageTest extends CommonConditions{
     void theTotalPriceWithInsuranceIsCalculatedCorrectlyTest() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
-        final KiwiBookingPage kiwiBookingPage = kiwiHomePage.openPage()
+        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
-                .enterDestination(testFlight)
-                .searchFlights()
-                .openPage()
-                .moveToTravelPlusInsurance();
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .searchFlights();
 
-        kiwiBookingPage.addTravelPlusInsurance();
+        final KiwiBookingPage kiwiBookingPage = kiwiResultsPage.openPage()
+                .moveToTravelPlusInsurance()
+                .addTravelPlusInsurance();
 
         final double priceForTicket = Double.parseDouble(kiwiBookingPage.copyPriceForTicket());
         final double priceForInsurance = Double.parseDouble(kiwiBookingPage.copyPriceForInsurance().replace(",", ".").trim());

@@ -45,9 +45,10 @@ public class KiwiBookingPage extends AbstractPage {
         return this;
     }
 
-    public void addTravelPlusInsurance() {
+    public KiwiBookingPage addTravelPlusInsurance() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", Waits.findElementByLocator(driver, travelPlusInsuranceLocator));
+        return this;
     }
 
 }
