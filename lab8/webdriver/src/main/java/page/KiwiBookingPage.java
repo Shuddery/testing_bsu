@@ -10,9 +10,9 @@ public class KiwiBookingPage extends AbstractPage {
 
     private By priceForTicketLocator = By.xpath("(//span[@class='SpinEffect-value']/span)[2]");
     private By priceForInsuranceLocator = By.xpath("(//span[@class='SpinEffect-value']/span)[3]");
-    private By totalPriceLocator = By.xpath("//div[contains(@class, 'ReservationBill-item-price')]//span[contains(@class, ' length-4')]");
+    private By totalPriceLocator = By.xpath("//div[contains(@class, 'AutoScaleText')]//span[contains(@class, 'SpinEffect-value')]/span");
 
-    private By travelPlusInsuranceLocator = By.xpath("(//label[contains(@class, 'Radio__Label')])[4]");
+    private By travelPlusInsuranceLocator = By.xpath("(//label[contains(@class, 'Radio__Label')])[5]");
 
 
 
