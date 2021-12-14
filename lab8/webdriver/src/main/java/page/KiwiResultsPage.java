@@ -1,6 +1,8 @@
 package page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import waits.Waits;
 
@@ -11,7 +13,7 @@ public class KiwiResultsPage extends AbstractPage {
 
     private By bookingButtonLocator = By.xpath("(//div[contains(@data-test, 'BookingButton')])[1]");
 
-    private By priceOfTheBestOption = By.xpath("(//div[contains(@class, 'DataContainer')]/span)[1]");
+    private By priceOfTheBestOptionLocator = By.xpath("(//div[contains(@class, 'DataContainer')]/span)[1]");
 
     private By errorMessageLocator = By.xpath("//div[contains(@class, 'NoResultsFiltersWrapper')]/div[contains(@class, 'StyledHeading')]");
 
@@ -26,6 +28,9 @@ public class KiwiResultsPage extends AbstractPage {
 
     private By incrementCheckedBagsButtonLocator = By.xpath("(//div[contains(@data-test, 'BagsPopup-checked')]//button)[2]");
 
+    private By flightFilterLocator = By.xpath("(//div[contains(@data-test, 'TransportOptionChoiceGroup')]//div[contains(@class, 'Checkbox__IconContainer')])[1]");
+    private By busFilterLocator = By.xpath("(//div[contains(@class, 'FilterWrapper__StyledContentWrapper')])[2]");
+    private By busCompanyNameLocator = By.xpath("(//div[contains(@data-test, 'TripPopupWrapper')]//div[contains(@class, 'BadgePrimitive__StyledBadgeContent')])[1]");
 
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
@@ -43,7 +48,7 @@ public class KiwiResultsPage extends AbstractPage {
     }
 
     public String copyPriceOfTheBestOption() {
-        return Waits.waitVisibilityOfElementLocated(driver, priceOfTheBestOption)
+        return Waits.waitVisibilityOfElementLocated(driver, priceOfTheBestOptionLocator)
                 .getText().replace(" €", "").trim();
     }
 
@@ -82,6 +87,21 @@ public class KiwiResultsPage extends AbstractPage {
     public KiwiResultsPage incrementAmountOfCheckedBags() {
         Waits.waitElementToBeClickable(driver, incrementCheckedBagsButtonLocator).click();
         return this;
+    }
+
+    public KiwiResultsPage removeFilterByFlight() {
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", Waits.findElementByLocator(driver, flightFilterLocator));
+        return this;
+    }
+
+    public KiwiResultsPage enableBusFilter() {
+        Waits.waitElementToBeClickable(driver, busFilterLocator).click();
+        return this;
+    }
+
+    public String copyBusCompanyName() {
+        return Waits.waitVisibilityOfElementLocated(driver, busCompanyNameLocator).getText();
     }
 }
 

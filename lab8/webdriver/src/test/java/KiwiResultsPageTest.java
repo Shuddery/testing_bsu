@@ -10,6 +10,7 @@ import static org.hamcrest.Matchers.*;
 public class KiwiResultsPageTest extends CommonConditions{
 
     Flight testFlightWithEmptyPlaceOfDeparture = FlightCreator.withEmptyPlaceOfDeparture();
+    final String BUS_COMPANY_NAME = "BlaBlabus";
 
     @Test
     void intermediateCostBecomesHigherWithPassengersIncrementTest() {
@@ -96,6 +97,25 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .clickOnMoreDetails();
 
         assertThat(kiwiResultsPage.isDockingDisplayed(), is(true));
+
+    }
+
+    @Test
+    void onlyBusRoutesWithBusFilterTest() {
+
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+        final KiwiResultsPage kiwiResultsPage =  kiwiHomePage.openPage()
+                .acceptCookies()
+                .turnOffBookingHotelCheckbox()
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .searchFlights()
+                .removeFilterByFlight()
+                .enableBusFilter();
+
+        final String busCompanyName = kiwiResultsPage.clickOnMoreDetails()
+                .copyBusCompanyName();
+
+        assertThat(busCompanyName, is(equalTo(BUS_COMPANY_NAME)));
 
     }
 
