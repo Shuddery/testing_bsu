@@ -15,23 +15,6 @@ public class KiwiBookingPageTest extends CommonConditions{
     Flight testFlightWithEmptyPlaceOfDeparture = FlightCreator.withEmptyPlaceOfDeparture();
 
     @Test
-    void compareIntermediateCostToTotalPriceTest() {
-
-        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
-        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
-                .acceptCookies()
-                .turnOffBookingHotelCheckbox()
-                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
-                .searchFlights();
-
-        final String intermediateCost = kiwiResultsPage.copyIntermediateCost();
-        final String totalCost = kiwiResultsPage.openPage().copyTotalCost();
-
-        assertThat(intermediateCost, is(equalTo(totalCost)));
-
-    }
-
-    @Test
     void theTotalPriceWithInsuranceIsCalculatedCorrectlyTest() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
@@ -50,6 +33,23 @@ public class KiwiBookingPageTest extends CommonConditions{
         final double totalPrice = Double.parseDouble(kiwiBookingPage.copyTotalCost().replace(",", ".").trim());
 
         assertThat(priceForTicket + priceForInsurance, is(equalTo(totalPrice)));
+
+    }
+
+    @Test
+    void compareIntermediateCostToTotalPriceTest() {
+
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
+                .acceptCookies()
+                .turnOffBookingHotelCheckbox()
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .searchFlights();
+
+        final String intermediateCost = kiwiResultsPage.copyIntermediateCost();
+        final KiwiBookingPage kiwiBookingPage = kiwiResultsPage.openPage();
+
+        assertThat(intermediateCost, is(equalTo(kiwiBookingPage.copyTotalCost())));
 
     }
 
