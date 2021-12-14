@@ -32,7 +32,7 @@ public class KiwiBookingPageTest extends CommonConditions{
         final double priceForInsurance = Double.parseDouble(kiwiBookingPage.copyPriceForInsurance().replace(",", ".").trim());
         final double totalPrice = Double.parseDouble(kiwiBookingPage.copyTotalCost().replace(",", ".").trim());
 
-        assertThat(priceForTicket + priceForInsurance, is(equalTo(totalPrice)));
+        assertThat(Math.round(priceForTicket + priceForInsurance), is(equalTo(Math.round(totalPrice))));
 
     }
 
