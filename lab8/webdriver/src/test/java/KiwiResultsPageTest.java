@@ -5,15 +5,14 @@ import page.KiwiResultsPage;
 import service.FlightCreator;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 public class KiwiResultsPageTest extends CommonConditions{
 
     Flight testFlightWithEmptyPlaceOfDeparture = FlightCreator.withEmptyPlaceOfDeparture();
 
     @Test
-    void isTheBestOptionDisplayedFirstTest() {
+    void theBestOptionIsDisplayedFirstTest() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
         final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
@@ -29,7 +28,7 @@ public class KiwiResultsPageTest extends CommonConditions{
     }
 
     @Test
-    void isErrorMessageDisplayedWithIncorrectData() {
+    void errorMessageIsDisplayedWithIncorrectData() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
         final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
@@ -45,7 +44,7 @@ public class KiwiResultsPageTest extends CommonConditions{
     }
 
     @Test
-    void isDockingDisplayedWithFilterToAllowNightConnections() {
+    void dockingIsDisplayedWithFilterToAllowNightConnections() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
         final KiwiResultsPage kiwiResultsPage =  kiwiHomePage.openPage()
@@ -56,6 +55,28 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .clickOnMoreDetails();
 
         assertThat(kiwiResultsPage.isDockingDisplayed(), is(true));
+
+    }
+
+    @Test
+    void intermediateCostBecomesHigherWithPassengersIncrementTest() {
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+        final KiwiResultsPage kiwiResultsPage = kiwiHomePage.openPage()
+                .acceptCookies()
+                .turnOffBookingHotelCheckbox()
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .searchFlights();
+
+        final double intermediateCost = Double.parseDouble(kiwiResultsPage.copyIntermediateCost().replace(",", ".").trim());
+
+        final double changedIntermediateCost = Double.parseDouble(kiwiResultsPage.openPassengersAndBagsField()
+                .incrementAmountOfPassengers()
+                .closePassengersAndBagsField()
+                .searchFlightsWithChangedAmountOfPassengers()
+                .copyIntermediateCost()
+                .replace(",", ".").trim());
+
+        assertThat(intermediateCost, is(lessThan(changedIntermediateCost)));
 
     }
 }

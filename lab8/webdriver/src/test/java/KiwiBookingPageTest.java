@@ -33,7 +33,7 @@ public class KiwiBookingPageTest extends CommonConditions{
     }
 
     @Test
-    void theTotalPriceWithInsuranceIsCalculatedCorrectly() {
+    void theTotalPriceWithInsuranceIsCalculatedCorrectlyTest() {
 
         KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
         final KiwiBookingPage kiwiBookingPage = kiwiHomePage.openPage()

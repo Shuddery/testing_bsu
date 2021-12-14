@@ -22,6 +22,12 @@ public class KiwiResultsPage extends AbstractPage {
 
     private By dockingLocator = By.xpath("(//div[contains(@class, 'Stack__StyledStack')]/span[contains(@class, 'Text__StyledText')])[2]");
 
+    private By passengersAndBagsFieldLocator = By.xpath("//div[contains(@data-test, 'PassengersField')]");
+    private By incrementPassengersButtonLocator = By.xpath("(//div[contains(@data-test, 'PassengersRow-adults')]//button[contains(@class, 'ButtonPrimitive__StyledButtonPrimitive')])[2]");
+    private By acceptChangesButtonLocator = By.xpath("//button[contains(@data-test, 'PassengersFieldFooter-done')]");
+    private By searchButtonLocator = By.xpath("//a[contains(@data-test, 'SearchButton')]");
+
+
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
     }
@@ -53,6 +59,26 @@ public class KiwiResultsPage extends AbstractPage {
 
     public boolean isDockingDisplayed() {
         return Waits.waitPresenceOfElementLocated(driver, dockingLocator).isDisplayed();
+    }
+
+    public KiwiResultsPage openPassengersAndBagsField() {
+        Waits.waitElementToBeClickable(driver, passengersAndBagsFieldLocator).click();
+        return this;
+    }
+
+    public KiwiResultsPage incrementAmountOfPassengers() {
+        Waits.waitElementToBeClickable(driver, incrementPassengersButtonLocator).click();
+        return this;
+    }
+
+    public KiwiResultsPage closePassengersAndBagsField() {
+        Waits.waitElementToBeClickable(driver, acceptChangesButtonLocator).click();
+        return this;
+    }
+
+    public KiwiResultsPage searchFlightsWithChangedAmountOfPassengers() {
+        Waits.waitElementToBeClickable(driver, searchButtonLocator).click();
+        return this;
     }
 }
 
