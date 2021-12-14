@@ -23,11 +23,12 @@ public class KiwiResultsPageTest extends CommonConditions{
 
         final int intermediateCost = Integer.parseInt(kiwiResultsPage.copyIntermediateCost());
 
-        final int changedIntermediateCost = Integer.parseInt(kiwiResultsPage.openPassengersAndBagsField()
+        kiwiResultsPage.openPassengersAndBagsField()
                 .incrementAmountOfPassengers()
                 .closePassengersAndBagsField()
-                .searchFlightsWithChangedAmountOfPassengers()
-                .copyIntermediateCost());
+                .searchFlightsWithChangedAmountOfPassengers();
+
+        final int changedIntermediateCost = Integer.parseInt(kiwiResultsPage.copyIntermediateCost());
 
         assertThat(intermediateCost, is(lessThan(changedIntermediateCost)));
 
