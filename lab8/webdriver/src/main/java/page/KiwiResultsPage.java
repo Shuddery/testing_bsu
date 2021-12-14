@@ -7,7 +7,7 @@ import waits.Waits;
 
 public class KiwiResultsPage extends AbstractPage {
 
-    private By intermediateCostLocator = By.xpath("(//strong[contains(@class, 'ResultCardstyled')]/span)[1]");
+    private By intermediateCostLocator = By.xpath("(//div[contains(@data-test, 'ResultCardPrice')]//strong/span)[1]");
 
     private By bookingButtonLocator = By.xpath("(//div[contains(@data-test, 'BookingButton')])[1]");
 
