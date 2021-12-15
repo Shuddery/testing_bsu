@@ -22,6 +22,7 @@ public class KiwiBookingPageTest extends CommonConditions{
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights();
 
         final KiwiBookingPage kiwiBookingPage = kiwiResultsPage.openPage()
@@ -44,6 +45,7 @@ public class KiwiBookingPageTest extends CommonConditions{
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights();
 
         final String intermediateCost = kiwiResultsPage.copyIntermediateCost();

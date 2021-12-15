@@ -20,6 +20,7 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights();
 
         final int intermediateCost = Integer.parseInt(kiwiResultsPage.copyIntermediateCost());
@@ -43,6 +44,7 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights();
 
         final int intermediateCost = Integer.parseInt(kiwiResultsPage.copyIntermediateCost());
@@ -61,6 +63,7 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights();
 
         final String priceOfTheBestOption = kiwiResultsPage.copyPriceOfTheBestOption();
@@ -79,6 +82,7 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .chooseFlightServiceClass()
                 .acceptFlightServiceClass()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights();
 
         assertThat(kiwiResultsPage.isErrorMessageDisplayed(), is(true));
@@ -93,6 +97,7 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights()
                 .clickOnMoreDetails();
 
@@ -108,6 +113,7 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights()
                 .removeFilterByFlight()
                 .enableBusFilter();
@@ -126,6 +132,7 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .acceptCookies()
                 .turnOffBookingHotelCheckbox()
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
                 .searchFlights()
                 .clickOnPriceFilter()
                 .moveSliderToMinPrice();
