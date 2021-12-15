@@ -4,6 +4,8 @@ import model.Flight;
 import org.openqa.selenium.*;
 import waits.Waits;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class KiwiHomePage extends AbstractPage{
 
@@ -44,10 +46,7 @@ public class KiwiHomePage extends AbstractPage{
     public KiwiHomePage enterDestination(Flight trip) {
         Waits.waitVisibilityOfElementLocated(driver, destinationInputLocator)
                 .sendKeys(trip.getDestination());
-        return this;
-    }
-
-    public KiwiHomePage selectDestination() {
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.MILLISECONDS);
         Waits.waitVisibilityOfElementLocated(driver, destinationInputChoiceLocator)
                 .sendKeys(Keys.ENTER);
         return this;
