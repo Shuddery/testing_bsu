@@ -32,6 +32,8 @@ public class KiwiResultsPage extends AbstractPage {
     private By busFilterLocator = By.xpath("(//div[contains(@class, 'FilterWrapper__StyledContentWrapper')])[2]");
     private By busCompanyNameLocator = By.xpath("(//div[contains(@data-test, 'TripPopupWrapper')]//div[contains(@class, 'BadgePrimitive__StyledBadgeContent')])[1]");
 
+    private By priceFilterLocator = By.xpath("//div[contains(@data-test, 'FilterHeader-days')]");
+
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
     }
