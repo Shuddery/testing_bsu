@@ -15,6 +15,14 @@ public class Waits {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    public static WebElement findElementByLocatorStaleElementReferenceException(WebDriver driver, By locator) {
+        try {
+            return findElementByLocator(driver, locator);
+        } catch (StaleElementReferenceException e) {
+            return findElementByLocator(driver, locator);
+        }
+    }
+
     public static WebElement findElementByLocator(WebDriver driver,  By locator) {
         return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions
