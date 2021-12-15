@@ -118,7 +118,7 @@ public class KiwiResultsPage extends AbstractPage {
     public KiwiResultsPage moveSliderToMinPrice() {
         Actions move = new Actions(driver);
         Action action = (Action) move.dragAndDropBy(
-                Waits.waitVisibilityOfElementLocated(driver, priceSliderLocator), 100, 0).build();
+                Waits.waitVisibilityOfElementLocated(driver, priceSliderLocator), 80, 0).build();
         action.perform();
         return this;
     }
