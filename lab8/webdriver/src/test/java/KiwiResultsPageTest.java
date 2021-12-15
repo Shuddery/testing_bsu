@@ -125,4 +125,16 @@ public class KiwiResultsPageTest extends CommonConditions{
 
     }
 
+    @Test
+    void minPriceInPriceFilterIsLessThanIntermediateCostTest() {
+        KiwiHomePage kiwiHomePage = new KiwiHomePage(driver);
+        final KiwiResultsPage kiwiResultsPage =  kiwiHomePage.openPage()
+                .acceptCookies()
+                .turnOffBookingHotelCheckbox()
+                .enterDestination(testFlightWithEmptyPlaceOfDeparture)
+                .selectDestination()
+                .searchFlights()
+                .clickOnPriceFilter();
+    }
+
 }

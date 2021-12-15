@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import waits.Waits;
 
 
@@ -33,6 +35,7 @@ public class KiwiResultsPage extends AbstractPage {
     private By busCompanyNameLocator = By.xpath("(//div[contains(@data-test, 'TripPopupWrapper')]//div[contains(@class, 'BadgePrimitive__StyledBadgeContent')])[1]");
 
     private By priceFilterLocator = By.xpath("//div[contains(@data-test, 'FilterHeader-days')]");
+    private By priceSliderLocator = By.xpath("//div[contains(@data-test, 'SliderHandle-0')]");
 
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
@@ -104,6 +107,19 @@ public class KiwiResultsPage extends AbstractPage {
 
     public String copyBusCompanyName() {
         return Waits.waitVisibilityOfElementLocated(driver, busCompanyNameLocator).getText();
+    }
+
+    public KiwiResultsPage clickOnPriceFilter() {
+        Waits.waitElementToBeClickable(driver, priceFilterLocator).click();
+        return this;
+    }
+
+    public KiwiResultsPage moveSliderToMinPrice() {
+        Actions move = new Actions(driver);
+        Action action = (Action) move.dragAndDropBy(
+                Waits.findElementByLocator(driver, priceSliderLocator), 30, 0).build();
+        action.perform();
+        return this;
     }
 }
 
