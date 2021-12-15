@@ -48,7 +48,7 @@ public class KiwiHomePage extends AbstractPage{
     }
 
     public KiwiHomePage selectDestination() {
-        Waits.waitVisibilityOfElementLocated(driver, destinationInputChoiceLocator)
+        Waits.findElementByLocatorStaleElementReferenceException(driver, destinationInputChoiceLocator)
                 .sendKeys(Keys.ENTER);
         return this;
     }

@@ -134,7 +134,14 @@ public class KiwiResultsPageTest extends CommonConditions{
                 .enterDestination(testFlightWithEmptyPlaceOfDeparture)
                 .selectDestination()
                 .searchFlights()
-                .clickOnPriceFilter();
+                .clickOnPriceFilter()
+                .moveSliderToMinPrice();
+
+        final int minPriceInFilter = Integer.parseInt(kiwiResultsPage.copyMinPriceInFilter());
+        final int intermediateCost = Integer.parseInt(kiwiResultsPage.copyIntermediateCost());
+
+        assertThat(minPriceInFilter, is(lessThan(intermediateCost)));
+
     }
 
 }

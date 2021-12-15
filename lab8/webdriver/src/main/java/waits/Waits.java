@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Waits {
-    protected final static int WAIT_TIMEOUT_SECONDS = 50;
+    protected final static int WAIT_TIMEOUT_SECONDS = 30;
 
     public static WebElement waitElementToBeClickable(WebDriver driver, By locator) {
         return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
@@ -24,5 +24,13 @@ public class Waits {
     public static WebElement waitVisibilityOfElementLocated(WebDriver driver, By locator) {
         return new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public static WebElement findElementByLocatorStaleElementReferenceException(WebDriver driver, By locator) {
+        try {
+            return findElementByLocator(driver, locator);
+        } catch (StaleElementReferenceException e) {
+            return findElementByLocator(driver, locator);
+        }
     }
 }

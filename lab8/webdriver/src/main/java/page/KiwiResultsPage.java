@@ -34,8 +34,9 @@ public class KiwiResultsPage extends AbstractPage {
     private By busFilterLocator = By.xpath("(//div[contains(@class, 'FilterWrapper__StyledContentWrapper')])[2]");
     private By busCompanyNameLocator = By.xpath("(//div[contains(@data-test, 'TripPopupWrapper')]//div[contains(@class, 'BadgePrimitive__StyledBadgeContent')])[1]");
 
-    private By priceFilterLocator = By.xpath("//div[contains(@data-test, 'FilterHeader-days')]");
+    private By priceFilterLocator = By.xpath("//div[contains(@data-test, 'FilterHeader-price')]");
     private By priceSliderLocator = By.xpath("//div[contains(@data-test, 'SliderHandle-0')]");
+    private By minPriceInFilterLocator = By.xpath("//div[contains(@data-test, 'FilterHeader-price')]//p/span");
 
     public KiwiResultsPage(WebDriver driver) {
         super(driver);
@@ -117,10 +118,16 @@ public class KiwiResultsPage extends AbstractPage {
     public KiwiResultsPage moveSliderToMinPrice() {
         Actions move = new Actions(driver);
         Action action = (Action) move.dragAndDropBy(
-                Waits.findElementByLocator(driver, priceSliderLocator), 30, 0).build();
+                Waits.waitVisibilityOfElementLocated(driver, priceSliderLocator), 100, 0).build();
         action.perform();
         return this;
     }
+
+    public String copyMinPriceInFilter() {
+        return Waits.waitVisibilityOfElementLocated(driver, minPriceInFilterLocator)
+                .getText().replace(" €", "").trim();
+    }
+
 }
 
 
