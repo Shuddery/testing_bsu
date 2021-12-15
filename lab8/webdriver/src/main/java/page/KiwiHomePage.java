@@ -42,9 +42,9 @@ public class KiwiHomePage extends AbstractPage{
     }
 
     public KiwiHomePage enterDestination(Flight trip) {
-        Waits.findElementByLocator(driver, destinationInputLocator)
+        Waits.waitVisibilityOfElementLocated(driver, destinationInputLocator)
                 .sendKeys(trip.getDestination());
-        Waits.findElementByLocatorStaleElementReferenceException(driver, destinationInputChoiceLocator)
+        Waits.waitVisibilityOfElementLocated(driver, destinationInputChoiceLocator)
                 .sendKeys(Keys.ENTER);
         return this;
     }
