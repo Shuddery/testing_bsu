@@ -15,7 +15,7 @@ public class KiwiHomePage extends AbstractPage{
     private By acceptCookiesButtonLocator = By.xpath("//button[@class='ButtonPrimitive__StyledButtonPrimitive-q2qrvj-0 GCpcO']");
 
     private By destinationInputLocator = By.xpath("//div[contains(@data-test, 'PlacePickerInput-destination')]/input");
-    private By destinationInputChoiceLocator = By.xpath("//div[contains(@data-test, 'PlacePickerRow-city')]");
+    private By destinationInputChoiceLocator = By.xpath("//div[contains(@data-test, 'PlacepickerModalOpened-destination')]//div[contains(@data-test, 'PlacePickerRow-city')]");
 
     private By bookingHotelCheckboxLocator = By.xpath("//input[contains(@class, 'Checkbox__Input')]");
 
