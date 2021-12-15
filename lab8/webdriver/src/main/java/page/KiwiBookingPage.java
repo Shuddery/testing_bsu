@@ -14,8 +14,6 @@ public class KiwiBookingPage extends AbstractPage {
 
     private By travelPlusInsuranceLocator = By.xpath("(//label[contains(@class, 'Radio__Label')])[5]");
 
-
-
     public KiwiBookingPage(WebDriver driver) {
         super(driver);
     }

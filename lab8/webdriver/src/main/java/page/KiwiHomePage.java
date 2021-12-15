@@ -10,9 +10,8 @@ import java.util.concurrent.TimeUnit;
 public class KiwiHomePage extends AbstractPage{
 
     private static final String HOMEPAGE_URL = "https://www.kiwi.com/ru/";
-
-    //private By acceptCookiesButtonLocator = By.xpath("//button[@type='button' and contains (., 'Принять')]");
-    private By acceptCookiesButtonLocator = By.xpath("//button[@class='ButtonPrimitive__StyledButtonPrimitive-q2qrvj-0 GCpcO']");
+    
+    private By acceptCookiesButtonLocator = By.xpath("(//section[contains(@class, 'ModalSection__StyledModalSection')]//button)[2]");
 
     private By destinationInputLocator = By.xpath("//div[contains(@data-test, 'PlacePickerInput-destination')]/input");
     private By destinationInputChoiceLocator = By.xpath("//div[contains(@data-test, 'PlacepickerModalOpened-destination')]//div[contains(@data-test, 'PlacePickerRow-city')]");
@@ -46,7 +45,6 @@ public class KiwiHomePage extends AbstractPage{
     public KiwiHomePage enterDestination(Flight trip) {
         Waits.waitVisibilityOfElementLocated(driver, destinationInputLocator)
                 .sendKeys(trip.getDestination());
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.MILLISECONDS);
         Waits.waitVisibilityOfElementLocated(driver, destinationInputChoiceLocator)
                 .sendKeys(Keys.ENTER);
         return this;
